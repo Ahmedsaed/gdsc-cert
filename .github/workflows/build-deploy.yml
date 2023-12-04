@@ -54,16 +54,16 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        repoToken: '${{ secrets.ACCESS_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
         channelId: live
-        projectId: gdsc-cert
+        projectId: gdsc23-cert
 
     - name: Deploy preview
       if: github.ref != 'refs/heads/main'
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        repoToken: '${{ secrets.ACCESS_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
         channelId: preview
-        projectId: gdsc-cert
+        projectId: gdsc23-cert

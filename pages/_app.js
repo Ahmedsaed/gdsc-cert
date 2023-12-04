@@ -7,13 +7,13 @@ import { useEffect } from "react";
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: "AIzaSyBZqkaBmfjETUStdKg10uIgv2ZGzygsBfo",
-    authDomain: "gdsc-cert.firebaseapp.com",
-    projectId: "gdsc-cert",
-    storageBucket: "gdsc-cert.appspot.com",
-    messagingSenderId: "320267466446",
-    appId: "1:320267466446:web:d93aa68a990207677e029f",
-    measurementId: "G-F8N65XRGYD",
+    apiKey: "AIzaSyDWALFZGP9D_NnvqA6vo49ciD3F6Fp0r5g",
+    authDomain: "gdsc23-cert.firebaseapp.com",
+    projectId: "gdsc23-cert",
+    storageBucket: "gdsc23-cert.appspot.com",
+    messagingSenderId: "975277348569",
+    appId: "1:975277348569:web:9b4e42a8a96de3ade510c8",
+    measurementId: "G-QD3L40GXFF"
   });
 }
 
