@@ -29,20 +29,27 @@ export default function Home() {
             </a>
           </Link>
           <a
-            href="https://www.linkedin.com/in/dev-ahmedhany/"
+            href="https://www.linkedin.com/in/ahmedsaed26/"
             className={styles.card}
           >
             <h2>More About &rarr;</h2>
-            <p>Contant The Developer and Check more Projects</p>
+            <p>Contact The Maintainer and Check more Projects</p>
           </a>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <h1 className={styles.title}>
-          made with 💖 by{" "}
-          <a href="https://github.com/dev-ahmedhany">Ahmed Hany</a>
-        </h1>
+        <div>
+          <h1 className={styles.title}>
+            Maintained by{" "}
+            <a href="https://github.com/Ahmedsaed">Ahmed Saed</a>
+          </h1>
+          <br/>
+          <h2 className={styles.title}>
+            Made with 💖 by{" "}
+            <a href="https://github.com/dev-ahmedhany">Ahmed Hany</a>
+          </h2>
+        </div>
       </footer>
     </div>
   );

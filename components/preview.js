@@ -13,7 +13,7 @@ import {
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
 import { Link } from "react-router-dom";
 
-const year = "2021 - 2022";
+const year = "2023 - 2024";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +42,7 @@ export default function Preview({ location }) {
     location?.state?.name || "Firstname Lastname"
   );
   const [line3, setLine3] = useState(
-    location?.state?.line3 || `Aswan University for the ${year} academic year.`
+    location?.state?.line3 || `GDSC MUST for the ${year} academic year.`
   );
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"
@@ -133,7 +133,7 @@ export default function Preview({ location }) {
             }}
             value={leadUniversity}
             className={classes.input}
-            placeholder="leadUniversity"
+            placeholder="Lead University"
           />
           <TextField
             onChange={(e) => {

@@ -382,7 +382,7 @@ function SvgComponent({
         >
           Verify the authenticity of this certificate at:
           <tspan fontWeight="500" fontFamily="Roboto">
-            {` https://gdsc-cert.web.app/c/${id}`}
+            {` https://gdsc23-cert.web.app/c/${id}`}
           </tspan>
         </text>
       </svg>

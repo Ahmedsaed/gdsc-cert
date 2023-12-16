@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import Preview from "./preview";
 import SuperAdmin from "./superAdmin";
 
-const year = "2021 - 2022";
+const year = "2023 - 2024";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,13 +49,13 @@ export default function Admin({ user }) {
   const [result, setResult] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [line3, setLine3] = useState(
-    `Aswan University for the ${year} academic year.`
+    `GDSC MUST for the ${year} academic year.`
   );
   const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
   const [line2, setLine2] = useState(
     "serving as a Google Developer Student Club Core Team Member at"
   );
-  const [signature, setSignature] = useState("Ahmed Hany");
+  const [signature, setSignature] = useState("Ahmed Saed");
   const [date, setDate] = useState(
     new Date().toLocaleDateString("en-US", {
       year: "numeric",
@@ -64,7 +64,7 @@ export default function Admin({ user }) {
     })
   );
   const [leadUniversity, setLeadUniversity] = useState(
-    "Google Developer Student Clubs Lead, Aswan University"
+    "Google Developer Student Clubs Lead, Misr University For Science And Technology"
   );
 
   const classes = useStyles();
@@ -220,16 +220,17 @@ export default function Admin({ user }) {
                             });
                           })
                             .then(({ name, id1 }) => {
-                              const finalResult = `${name}\r\nhttps://gdsc-cert.web.app/c/${id1}\r\n`;
+                              const finalResult = `${name}\r\nhttps://gdsc23-cert.web.app/c/${id1}\r\n`;
                               setResult((r) => r + finalResult);
                             })
                             .catch((err) => {
                               console.error(err);
                             });
                         });
-                        fetch(
-                          "https://github.dev-ahmedhany.workers.dev/gdsc-cert"
-                        );
+                        // I have no idea of what is this cloudflare worker doing
+                        // fetch(
+                        //   "https://github.dev-ahmedhany.workers.dev/gdsc-cert"
+                        // );
                       }}
                       color="primary"
                       variant="contained"
