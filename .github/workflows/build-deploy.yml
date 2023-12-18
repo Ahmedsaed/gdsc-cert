@@ -17,10 +17,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -37,10 +33,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-build-
 
-    - name: Install Node.js
+    - name: Install Node.js 16
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
 
     - name: Install NPM packages
       run: npm install
@@ -50,6 +46,11 @@ jobs:
 
     - name: Export project
       run: npm run export
+
+    - name: Install Node.js 16
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18.x
 
     - name: Deploy
       if: github.ref == 'refs/heads/main'
