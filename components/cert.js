@@ -12,6 +12,8 @@ export default function Cert(params) {
     }
   }, []);
 
+  console.log("stage 3"); // debugging purposes
+
   return width ? (
     <Box
       pt={3}
@@ -57,6 +59,11 @@ export default function Cert(params) {
       </Box>
     </Box>
   ) : (
-    <></>
+    <>
+      <h1>
+        Please use a browser that supports SVGs, like Chrome, Firefox, or
+        Safari.
+      </h1>
+    </>
   );
 }

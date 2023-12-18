@@ -47,7 +47,7 @@ jobs:
     - name: Export project
       run: npm run export
 
-    - name: Install Node.js 16
+    - name: Install Node.js 18
       uses: actions/setup-node@v1
       with:
         node-version: 18.x

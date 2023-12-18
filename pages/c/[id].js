@@ -8,6 +8,7 @@ const sharp = require("sharp");
 import Head from "next/head";
 
 export default function C(props) {
+  console.log("stage 2"); // debugging purposes
   return (
     <>
       <Head>
