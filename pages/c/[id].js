@@ -20,7 +20,7 @@ export default function C(props) {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://gdsc-cert.web.app/c/${props.id}`}
+          content={`https://gdsc23-cert.web.app/c/${props.id}`}
         />
         <meta
           property="og:title"
@@ -32,12 +32,12 @@ export default function C(props) {
         />
         <meta
           property="og:image"
-          content={`https://gdsc-cert.web.app/c/${props.id}.jpeg`}
+          content={`https://gdsc23-cert.web.app/c/${props.id}.jpeg`}
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content={`https://gdsc-cert.web.app/c/${props.id}`}
+          content={`https://gdsc23-cert.web.app/c/${props.id}`}
         />
         <meta
           property="twitter:title"
@@ -49,7 +49,7 @@ export default function C(props) {
         />
         <meta
           property="twitter:image"
-          content={`https://gdsc-cert.web.app/c/${props.id}.jpeg`}
+          content={`https://gdsc23-cert.web.app/c/${props.id}.jpeg`}
         />
       </Head>
       <Cert {...props}></Cert>
