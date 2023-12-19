@@ -1,34 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GDSC Certificate Generator
+
+This project is a certificate generator website for Google Developer Student Clubs (GDSC). It's built using Next.js and hosted on Firebase. The project also utilizes Firebase Hosting, Firebase Authentication and Firebase Database services, along with a Cloudflare worker.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
+### Prerequisites
+
+- Node.js (v16.x)
+- npm
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory
+   ```sh
+   cd <project-directory>
+	```
+3. Install the dependencies:
+   ```sh
+   npm install
+   ```
+   > Note: if npm modified the `package-lock.json` file, please revert the changes before proceeding.
+
+### Project Setup
+
+1. Create a new Firebase project.
+2. Enable the following services:
+   - Firebase Hosting
+   - Firebase Authentication
+   - Firebase Realtime Database
+3. Create a new web app to get the Firebase configuration.
+4. Update the configuration in `firebase.js`, `.firebaserc` and `_app.js` with your Firebase project configuration.
+5. Create a new Cloudflare worker using the code in `cloudflare-worker.js` and update the url in `components/admin.js`.
+6. Create GitHub secrets for build-deploy.yaml
+	- `FIREBASE_SERVICE_ACCOUNT_GDSC_CERT`: Firebase service account JSON
+	- `ACCESS_TOKEN`: GitHub access token
+
+## Usage
+
+### Development
+
+To start the development server, run the following command:
+
+```sh
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Production
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To build the project, run the following command:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```sh
+npm run build
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To start the production server, run the following command:
 
-## Learn More
+```sh
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+For more information on how the project works, take a look at issue [#3](https://github.com/Ahmedsaed/gdsc-cert/issues/3).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Distributed under the MIT License. See `LICENSE` for more information.
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Ahmed Saed](https://github.com/Ahmedsaed)
