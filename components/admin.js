@@ -227,10 +227,25 @@ export default function Admin({ user }) {
                               console.error(err);
                             });
                         });
-                        // I have no idea of what is this cloudflare worker doing
-                        // fetch(
-                        //   "https://github.dev-ahmedhany.workers.dev/gdsc-cert"
-                        // );
+
+                        fetch("https://gdsc-cert.ahmedsaed2652003.workers.dev/", {
+                          method: "GET",
+                          headers: {
+                            "Authorization": "Bearer gdsc23-AhmedSaed",
+                          },
+                        })
+                          .then((res) => {
+                            if (!res.ok) {
+                              throw new Error(`HTTP error! Status: ${res.status}`);
+                            }
+                            return res.text();
+                          })
+                          .then((data) => {
+                            console.log(data);
+                          })
+                          .catch((error) => {
+                            console.error("Error during fetch:", error);
+                          });
                       }}
                       color="primary"
                       variant="contained"
