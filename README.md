@@ -15,12 +15,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repo
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/Ahmedsaed/gdsc-cert
    ```
 2. Navigate to the project directory
    ```sh
-   cd <project-directory>
-	```
+   cd gdsc-cert
+   ```
 3. Install the dependencies:
    ```sh
    npm install
