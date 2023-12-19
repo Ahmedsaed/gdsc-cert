@@ -8,7 +8,6 @@ const sharp = require("sharp");
 import Head from "next/head";
 
 export default function C(props) {
-  console.log("stage 2"); // debugging purposes
   return (
     <>
       <Head>
@@ -53,6 +52,7 @@ export default function C(props) {
           content={`https://gdsc23-cert.web.app/c/${props.id}.jpeg`}
         />
       </Head>
+
       <Cert {...props}></Cert>
     </>
   );
@@ -73,7 +73,7 @@ export async function getStaticProps(context) {
     )
   );
   sharp(roundedCorners)
-    .jpeg({quality:50})
+    .jpeg({ quality: 50 })
     .toFile(`${path.resolve("public/c/", id)}.jpeg`)
     .catch(function (err) {
       console.log(err);

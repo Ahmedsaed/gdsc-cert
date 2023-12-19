@@ -12,8 +12,6 @@ export default function Cert(params) {
     }
   }, []);
 
-  console.log("stage 3"); // debugging purposes
-
   return width ? (
     <Box
       pt={3}
