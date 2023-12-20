@@ -281,9 +281,9 @@ export default function Admin({ user }) {
       ) : (
         <>
           <Typography style={{ color: "white" }}>
-            {`You Don't have Admin rights`}
+            {`You don't have Admin rights`}
             <br />
-            {`Contact Ahmed Hany, Your Email : `}
+            {`Contact Ahmed Saed, Your Email : `}
             <br />
             {`${user.email}`}
           </Typography>
