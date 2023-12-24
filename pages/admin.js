@@ -12,61 +12,64 @@ import Particles from "react-particles-js";
 const auth = firebase.auth();
 
 export default function App() {
-  return (
-    <div suppressHydrationWarning>
-      {typeof window === "undefined" ? null : <Routes />}
-    </div>
-  );
+    return (
+        <div suppressHydrationWarning>
+            {typeof window === "undefined" ? null : <Routes />}
+        </div>
+    );
 }
 
 function Routes() {
-  const [user, loading] = useAuthState(auth);
-  return (
-    <Router>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        style={{
-          background:
+    const [user, loading] = useAuthState(auth);
+
+    const background_style = {
+        background:
             "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-          minHeight: "100vh",
-        }}
-      >
-        {typeof window !== "undefined" && (
-          <Particles
-            params={{
-              particles: {
+        minHeight: "100vh",
+    };
+
+    const particles_background = <Particles
+        params={{
+            particles: {
                 number: {
-                  value: 50,
+                    value: 50,
                 },
                 size: {
-                  value: 3,
+                    value: 3,
                 },
-              },
-              interactivity: {
+            },
+            interactivity: {
                 events: {
-                  onhover: {
-                    enable: true,
-                    mode: "repulse",
-                  },
+                    onhover: {
+                        enable: true,
+                        mode: "repulse",
+                    },
                 },
-              },
-            }}
-          />
-        )}
-        {loading ? (
-          <></>
-        ) : (
-          <Switch>
-            {/* Make Sur to add the Route at firebase.json */}
-            <Route exact path={["/admin", "/preview", "/ahmed"]}>
-              {user?.email ? <Admin user={user} /> : <Login />}
-            </Route>
-          </Switch>
-        )}
-      </Box>
-    </Router>
-  );
+            },
+        }} />;
+
+    return (
+        <Router>
+            <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                style={background_style}
+            >
+                {typeof window !== "undefined" && particles_background}
+
+                {loading ? (
+                    <></>
+                ) : (
+                    <Switch>
+                        {/* Make Sur to add the Route at firebase.json */}
+                        <Route exact path={["/admin", "/preview", "/ahmed"]}>
+                            {user?.email ? <Admin user={user} /> : <Login />}
+                        </Route>
+                    </Switch>
+                )}
+            </Box>
+        </Router>
+    );
 }
