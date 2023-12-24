@@ -56,7 +56,7 @@ function SvgComponent({
                             width={2048}
                             height={1152}
                             preserveAspectRatio="none"
-                            xlinkHref="/images/blank_certificate.png"
+                            xlinkHref="/blank_certificate.png"
                         />
                     </g>
                     <path
