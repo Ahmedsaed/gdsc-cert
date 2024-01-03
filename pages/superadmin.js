@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Admin from "../components/admin";
 import Login from "../components/login";
@@ -8,17 +8,13 @@ import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Box } from "@material-ui/core";
 import Particles from "react-particles-js";
-import { withRouter } from "next/router";
+
+import SuperAdmin from "../components/superAdmin";
 
 const auth = firebase.auth();
 
-function App({ router }) {
-    const [user, loading] = useAuthState(auth);
-    const [state, setState] = React.useState(router.query);
-
-    useEffect(() => {
-        setState(router.query);
-    }, [router.query]);
+export default function App() {
+	const [user, loading] = useAuthState(auth);
 
     const background_style = {
         background:
@@ -49,8 +45,8 @@ function App({ router }) {
         />
     );
 
-    return (
-        <div suppressHydrationWarning>
+	return (
+		<div suppressHydrationWarning>
             {typeof window === "undefined" ? null : (
                 <Box
                     display="flex"
@@ -64,16 +60,10 @@ function App({ router }) {
                     {loading ? (
                         <>Loading</>
                     ) : (
-                      user?.email ? (
-                          <Admin user={user} state={state} />
-                      ) : (
-                          <Login />
-                      )
+                        <SuperAdmin user={user} />
                     )}
                 </Box>
             )}
         </div>
-    );
+	);
 }
-
-export default withRouter(App);

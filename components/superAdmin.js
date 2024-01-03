@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
     TextField,
@@ -31,9 +31,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SuperAdmin({ user }) {
-    const [value, loading] = useCollection(
+    const [value, loading, error] = useCollection(
         firebase.firestore().collection("users").orderBy("cert")
     );
+
+    useEffect(() => {
+        if (!loading && value) {
+          // The data is loaded, and you can perform actions with the 'value' here
+          console.log("Data loaded:", value);
+        }
+    }, [loading, value]);
 
     const [disabled, setDisabled] = useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -45,6 +52,13 @@ export default function SuperAdmin({ user }) {
     const [needAccess, loadingNeedAccess] = useCollection(
         firebase.firestore().collection("needAccess")
     );
+
+    useEffect(() => {
+        if (!loadingNeedAccess && needAccess) {
+            // The data is loaded, and you can perform actions with the 'value' here
+            console.log("Data loaded:", needAccess);
+            }
+    }, [loadingNeedAccess, needAccess]);
 
     const [id, setID] = useState("");
 
@@ -72,7 +86,7 @@ export default function SuperAdmin({ user }) {
         });
     }
 
-    const UsersList = (
+    const UsersList = (value) => (
         <>
             <Box
                 flexDirection="column"
@@ -96,11 +110,10 @@ export default function SuperAdmin({ user }) {
                     </React.Fragment>
                 ))}
             </Box>
-            ;
         </>
     );
 
-    const AccessApprovalList = needAccess.docs.length > 0 && (
+    const AccessApprovalList = (needAccess) => needAccess.docs.length > 0 && (
         <span>
             <Typography variant="h5">
                 {" "}
@@ -156,9 +169,9 @@ export default function SuperAdmin({ user }) {
     const NoAccessWarning = (
         <>
             <Typography style={{ color: "white" }}>
-                {`You Don't have Ahmed's rights`}
+                {`You Don't have SuperAdmin rights`}
                 <br />
-                {`Contact Ahmed Hany, Your Email : `}
+                {`Contact Ahmed Saed, Your Email : `}
                 <br />
                 {`${user.email}`}
             </Typography>
@@ -179,11 +192,11 @@ export default function SuperAdmin({ user }) {
             ) : value ? (
                 <>
                     <Paper style={{ margin: "50px" }} elevation={10}>
-                        {UsersList}
+                        {UsersList(value)}
                         {loadingNeedAccess ? (
                             <>Loading...</>
                         ) : (
-                            AccessApprovalList
+                            AccessApprovalList(needAccess)
                         )}
                     </Paper>
                 </>
