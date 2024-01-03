@@ -18,7 +18,7 @@ export default function Home() {
                             </p>
                         </a>
                     </Link>
-                    <Link passHref href="/preview">
+                    <Link href="/preview">
                         <a className={styles.card}>
                             <h2>Preview Certificate &rarr;</h2>
                             <p>
@@ -26,7 +26,7 @@ export default function Home() {
                             </p>
                         </a>
                     </Link>
-                    <Link passHref href="/admin">
+                    <Link href="/admin">
                         <a className={styles.card}>
                             <h2>Create Certificates &rarr;</h2>
                             <p>

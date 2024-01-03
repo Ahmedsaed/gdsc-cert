@@ -3,9 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import { Link, useLocation } from "react-router-dom";
-import Preview from "./preview";
-import SuperAdmin from "./superAdmin";
+import Router, { useRouter, withRouter } from "next/router";
 
 const year = "2023 - 2024";
 
@@ -30,9 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Admin({ user }) {
-    const location = useLocation();
-
+export default function Admin({ user, state }) {
     const [value, loading] = useDocumentDataOnce(
         firebase.firestore().collection("users").doc(user.email)
     );
@@ -46,17 +42,23 @@ export default function Admin({ user }) {
     }, [loading, value, user.email]);
 
     const prefix = value?.cert;
-    const [names, setNames] = useState("");
-    const [result, setResult] = useState("");
-    const [disabled, setDisabled] = useState(false);
     const [line3, setLine3] = useState(
-        `GDSC MUST for the ${year} academic year.`
+        state?.line3 || `GDSC MUST for the ${year} academic year.`
     );
-    const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
+    const [signature, setSignature] = useState(
+        state?.signature || "Ahmed Saed"
+    );
+    const [title, setTitle] = useState(
+        state?.title || `${year} GDSC Core Team Member`
+    );
     const [line2, setLine2] = useState(
-        "serving as a Google Developer Student Club Core Team Member at"
+        state?.line2 ||
+            "serving as a Google Developer Student Club Core Team Member at"
     );
-    const [signature, setSignature] = useState("Ahmed Saed");
+    const [leadUniversity, setLeadUniversity] = useState(
+        state?.leadUniversity || "Ahmed Saed, GDSC MUST"
+    );
+    const [names, setNames] = useState(state?.name || "");
     const [date, setDate] = useState(
         new Date().toLocaleDateString("en-US", {
             year: "numeric",
@@ -64,9 +66,9 @@ export default function Admin({ user }) {
             day: "numeric",
         })
     );
-    const [leadUniversity, setLeadUniversity] = useState(
-        "Google Developer Student Clubs Lead, Misr University For Science And Technology"
-    );
+
+    const [result, setResult] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     const classes = useStyles();
 
@@ -146,6 +148,27 @@ export default function Admin({ user }) {
                 console.error("Error during fetch:", error);
             });
     }
+
+    const handlePreviewClick = () => {
+        const previewState = {
+            title,
+            line2,
+            line3,
+            signature,
+            date,
+            leadUniversity,
+            name: names.split(/\r?\n/)[0],
+        };
+
+        Router.push(
+            {
+                pathname: "/preview",
+                query: { ...previewState },
+            },
+            '/preview',
+            { shallow: true }
+        );
+    };
 
     const CreateCertMenu = (
         <>
@@ -240,26 +263,13 @@ export default function Admin({ user }) {
                                 width="100%"
                                 justifyContent="space-between"
                             >
-                                <Link
-                                    style={{ textDecoration: "none" }}
-                                    to={{
-                                        pathname: "/preview",
-                                        state: {
-                                            name: names.split(/\r?\n/)[0],
-                                            line3,
-                                            signature,
-                                            date,
-                                            leadUniversity,
-                                        },
-                                    }}
+                                <Button
+                                    disabled={disabled}
+                                    variant="contained"
+                                    onClick={handlePreviewClick}
                                 >
-                                    <Button
-                                        disabled={disabled}
-                                        variant="contained"
-                                    >
-                                        Preview
-                                    </Button>
-                                </Link>
+                                    Preview
+                                </Button>
                                 <Button
                                     disabled={disabled}
                                     onClick={handleCreateBtn}
@@ -315,7 +325,7 @@ export default function Admin({ user }) {
         </>
     );
 
-    return location.pathname === "/admin" ? (
+    return (
         <>
             {loading ? (
                 <>Loading...</>
@@ -325,9 +335,5 @@ export default function Admin({ user }) {
                 RequestAdminMenu
             )}
         </>
-    ) : location.pathname === "/ahmed" ? (
-        <SuperAdmin user={user} />
-    ) : (
-        <Preview location={location} />
     );
 }

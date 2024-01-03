@@ -11,7 +11,7 @@ import {
     Button,
 } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
-import { Link } from "react-router-dom";
+import Router from 'next/router';
 
 const year = "2023 - 2024";
 
@@ -36,24 +36,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Preview({ location }) {
+export default function Preview({ props }) {
     const [certCode, setCertCode] = useState("B15AC268EE25");
     const [name, setName] = useState(
-        location?.state?.name || "Firstname Lastname"
+        props?.state?.name || "Firstname Lastname"
     );
     const [line3, setLine3] = useState(
-        location?.state?.line3 || `GDSC MUST for the ${year} academic year.`
+        props?.state?.line3 || `GDSC MUST for the ${year} academic year.`
     );
     const [signature, setSignature] = useState(
-        location?.state?.signature || "Signature Here"
+        props?.state?.signature || "Signature Here"
     );
-    const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
+    const [title, setTitle] = useState(
+        props?.state?.title || `${year} GDSC Core Team Member`
+    );
     const [line2, setLine2] = useState(
-        "serving as a Google Developer Student Club Core Team Member at"
+        props?.state?.line2 || "serving as a Google Developer Student Club Core Team Member at"
     );
-    const [date, setDate] = useState(location?.state?.date || "July 23, 2021");
+    const [date, setDate] = useState(props?.state?.date || "July 23, 2021");
     const [leadUniversity, setLeadUniversity] = useState(
-        location?.state?.leadUniversity || "[GDSC Lead Name, University Name]"
+        props?.state?.leadUniversity || "[GDSC Lead Name, University Name]"
     );
     const [error, setError] = useState("");
     const classes = useStyles();
@@ -84,6 +86,27 @@ export default function Preview({ location }) {
         }
     }, []);
 
+    const handleCreateClick = () => {
+        const state = {
+            title,
+            line2,
+            line3,
+            signature,
+            leadUniversity,
+            date,
+            name,
+        };
+
+        Router.push(
+            {
+                pathname: "/admin",
+                query: { ...state },
+            },
+            '/admin',
+            { shallow: true }
+        );
+      };
+
     return (
         <>
             <Paper style={{ margin: "50px" }} elevation={10}>
@@ -103,16 +126,8 @@ export default function Preview({ location }) {
                         }}
                         value={title}
                         className={classes.input}
-                        label="title"
+                        label="Title"
                         placeholder={`${year} GDSC Core Team Member`}
-                    />
-                    <TextField
-                        onChange={(e) => {
-                            setName(e.target.value);
-                        }}
-                        value={name}
-                        className={classes.input}
-                        placeholder="name"
                     />
                     <TextField
                         onChange={(e) => {
@@ -130,6 +145,7 @@ export default function Preview({ location }) {
                         value={line3}
                         className={classes.input}
                         placeholder="line 3"
+                        label="Line 3"
                     />
                     <TextField
                         onChange={(e) => {
@@ -138,6 +154,7 @@ export default function Preview({ location }) {
                         value={signature}
                         className={classes.input}
                         placeholder="signature"
+                        label="Signature"
                     />
                     <TextField
                         onChange={(e) => {
@@ -146,6 +163,7 @@ export default function Preview({ location }) {
                         value={leadUniversity}
                         className={classes.input}
                         placeholder="Lead University"
+                        label="Lead Name"
                     />
                     <TextField
                         onChange={(e) => {
@@ -154,6 +172,16 @@ export default function Preview({ location }) {
                         value={date}
                         className={classes.input}
                         placeholder="date"
+                        label="Date"
+                    />
+                    <TextField
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
+                        value={name}
+                        className={classes.input}
+                        placeholder="name"
+                        label="Member Name"
                     />
                     <Paper className={classes.textBox}>
                         <TextField
@@ -180,15 +208,9 @@ export default function Preview({ location }) {
                             }}
                         />
                     </Paper>
-                    <Link
-                        to={{
-                            pathname: "/admin",
-                        }}
-                    >
-                        <Button color="primary" variant="contained">
-                            Create
-                        </Button>
-                    </Link>
+                    <Button color="primary" variant="contained" onClick={handleCreateClick}>
+                        Create
+                    </Button>
                 </Box>
             </Paper>
             <Box mb={2}>
