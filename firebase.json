@@ -5,6 +5,14 @@
     "cleanUrls": true,
     "rewrites": [
       {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/c/**",
+        "destination": "/c/[id].html"
+      },
+      {
         "source": "/validate/**",
         "destination": "/validate.html"
       }
