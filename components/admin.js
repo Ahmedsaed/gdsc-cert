@@ -73,7 +73,7 @@ export default function Admin({ user, state }) {
     const classes = useStyles();
 
     const generateRandomID = (prefix) => {
-        let text = prefix;
+        let text = prefix + '-';
         const possible =
             "0123456789ABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ0123456789";
 

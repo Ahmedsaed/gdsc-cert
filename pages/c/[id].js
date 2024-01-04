@@ -22,8 +22,7 @@ export default function C(props) {
             firebase
                 .firestore()
                 .collection("cert")
-                // .doc(id.split("-")[0])
-                .doc(id.substring(0, 2))
+                .doc(id.split("-")[0])
                 .collection("core21")
                 .doc(id)
                 .get()
