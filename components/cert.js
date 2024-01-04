@@ -5,7 +5,7 @@ import Head from "next/head";
 
 const saveSvgAsPng = require("save-svg-as-png");
 
-export default function Cert(params) {
+export default function Cert({params}) {
     const [width, setWidth] = useState(null);
 
     useEffect(() => {
