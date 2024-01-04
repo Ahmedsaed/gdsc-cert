@@ -23,7 +23,7 @@ export default function C(props) {
                 .firestore()
                 .collection("cert")
                 // .doc(id.split("-")[0])
-                .doc(id.substring(0, 3))
+                .doc(id.substring(0, 2))
                 .collection("core21")
                 .doc(id)
                 .get()
@@ -33,7 +33,7 @@ export default function C(props) {
         }
     }, [id]);
 
-    return (
+    return value ? (
         <>
             <Head>
                 <title>{`${value.name} - GDSC Certificate`}</title>
@@ -83,5 +83,7 @@ export default function C(props) {
 
             {id ? <Cert params={{ id, ...value }}></Cert> : <></>}
         </>
+    ) : (
+      <>Not Found</>
     );
 }
