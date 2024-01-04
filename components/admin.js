@@ -128,25 +128,6 @@ export default function Admin({ user, state }) {
                     console.error(err);
                 });
         });
-
-        fetch("https://gdsc-cert.ahmedsaed2652003.workers.dev/", {
-            method: "GET",
-            headers: {
-                Authorization: "Bearer gdsc23-AhmedSaed",
-            },
-        })
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.text();
-            })
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error("Error during fetch:", error);
-            });
     }
 
     const handlePreviewClick = () => {
