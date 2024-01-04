@@ -1,136 +1,88 @@
-import firebase from "firebase";
-import fs from "fs";
-import path from "path";
+import { useEffect, useState } from "react";
 import Cert from "../../components/cert";
-import GDSCCoreTeamCertification2021 from "../../components/cert/GDSCCoreTeamCertification2021";
-import ReactDOMServer from "react-dom/server";
-const sharp = require("sharp");
 import Head from "next/head";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import { useRouter } from "next/router";
 
 export default function C(props) {
-  return (
-    <>
-      <Head>
-        <title>{`${props.name} - GDSC Certificate`}</title>
-        <meta name="title" content={`${props.name} - GDSC Certificate`} />
-        <meta
-          name="description"
-          content={`Google Develelopers Student Clubs Certificate`}
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`https://gdsc23-cert.web.app/c/${props.id}`}
-        />
-        <meta
-          property="og:title"
-          content={`${props.name} - GDSC Certificate`}
-        />
-        <meta
-          property="og:description"
-          content={`${props.name} - Google Develelopers Student Clubs Certificate`}
-        />
-        <meta
-          property="og:image"
-          content={`https://gdsc23-cert.web.app/c/${props.id}.jpeg`}
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`https://gdsc23-cert.web.app/c/${props.id}`}
-        />
-        <meta
-          property="twitter:title"
-          content={`${props.name} - GDSC Certificate`}
-        />
-        <meta
-          property="twitter:description"
-          content={`${props.name} - Google Develelopers Student Clubs Certificate`}
-        />
-        <meta
-          property="twitter:image"
-          content={`https://gdsc23-cert.web.app/c/${props.id}.jpeg`}
-        />
-      </Head>
+    const router = useRouter();
+    const [id, setID] = useState(router.query.id);
 
-      <Cert {...props}></Cert>
-    </>
-  );
-}
+    const [value, setValue] = useState({});
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
-  const { data } = JSON.parse(fs.readFileSync(path.resolve("data.json")));
-  const info = data.find((d) => d.id === id);
+    useEffect(() => {
+        if (typeof window !== "undefined" && router.isReady) {
+            setID(router.query.id);
+        }
+    }, [router.isReady]);
 
-  if (fs.existsSync(`${path.resolve("public/c/", id)}.jpeg`)) {
-    return { props: info };
-  }
+    useEffect(() => {
+        if (typeof window !== "undefined" && id) {
+            firebase
+                .firestore()
+                .collection("cert")
+                .doc(id.split("-")[0])
+                .collection("core21")
+                .doc(id)
+                .get()
+                .then((doc) => {
+                    setValue(doc.data());
+                });
+        }
+    }, [id]);
 
-  const roundedCorners = Buffer.from(
-    ReactDOMServer.renderToStaticMarkup(
-      <GDSCCoreTeamCertification2021 {...info} />
-    )
-  );
-  sharp(roundedCorners)
-    .jpeg({ quality: 50 })
-    .toFile(`${path.resolve("public/c/", id)}.jpeg`)
-    .catch(function (err) {
-      console.log(err);
-    });
-  return { props: info };
-}
+    return value ? (
+        <>
+            <Head>
+                <title>{`${value.name} - GDSC Certificate`}</title>
+                <meta
+                    name="title"
+                    content={`${value.name} - GDSC Certificate`}
+                />
+                <meta
+                    name="description"
+                    content={`Google Develelopers Student Clubs Certificate`}
+                />
+                <meta property="og:type" content="article" />
+                <meta
+                    property="og:url"
+                    content={`https://gdsc23-cert.web.app/c/${value.id}`}
+                />
+                <meta
+                    property="og:title"
+                    content={`${value.name} - GDSC Certificate`}
+                />
+                <meta
+                    property="og:description"
+                    content={`${value.name} - Google Develelopers Student Clubs Certificate`}
+                />
+                <meta
+                    property="og:image"
+                    content={`https://gdsc23-cert.web.app/c/${value.id}.jpeg`}
+                />
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta
+                    property="twitter:url"
+                    content={`https://gdsc23-cert.web.app/c/${value.id}`}
+                />
+                <meta
+                    property="twitter:title"
+                    content={`${value.name} - GDSC Certificate`}
+                />
+                <meta
+                    property="twitter:description"
+                    content={`${value.name} - Google Develelopers Student Clubs Certificate`}
+                />
+                <meta
+                    property="twitter:image"
+                    content={`https://gdsc23-cert.web.app/c/${value.id}.jpeg`}
+                />
+            </Head>
 
-export async function getStaticPaths() {
-  var dir = "public/c/";
-
-  if (!fs.existsSync(path.resolve(dir))) {
-    fs.mkdirSync(path.resolve(dir));
-  }
-
-  let data = [];
-  const paths = [];
-
-  let lastCreated = 0;
-  if (fs.existsSync(path.resolve("data.json"))) {
-    const { lastCreated: oldLastCreated, data: oldData } = JSON.parse(
-      fs.readFileSync(path.resolve("data.json"))
+            {id ? <Cert params={{ id, ...value }}></Cert> : <></>}
+        </>
+    ) : (
+      <>Not Found</>
     );
-    lastCreated = oldLastCreated;
-    data = oldData;
-  }
-  const db = firebase.firestore();
-  let docRef = db.collectionGroup("core21").orderBy("created");
-  if (lastCreated !== 0) {
-    const firestoreLastCreated = firebase.firestore.Timestamp.fromDate(
-      new Date(lastCreated)
-    );
-    docRef = docRef.startAfter(firestoreLastCreated);
-  } else {
-    console.log("WARN  -  Getting all Data");
-  }
-  const querySnapshot = await docRef.get();
-  console.log("info  - Getting all " + querySnapshot.docs.length + " Docs");
-  querySnapshot.forEach((doc) => {
-    const docData = doc.data();
-    data.push({ id: doc.id, ...docData });
-    let created = docData.created.toDate().getTime();
-    if (created > lastCreated) {
-      lastCreated = created;
-    }
-  });
-  fs.writeFileSync(
-    path.resolve("data.json"),
-    JSON.stringify({ lastCreated, data })
-  );
-  data.forEach((doc) => {
-    paths.push({ params: { id: doc.id } });
-  });
-  if (paths.length === 0) {
-    throw "empty list";
-  }
-  return {
-    paths,
-    fallback: false,
-  };
 }

@@ -1,24 +1,22 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Admin from "../components/admin";
-import Login from "../components/login";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Box } from "@material-ui/core";
 import Particles from "react-particles-js";
+import Preview from "../components/preview";
 import { withRouter } from "next/router";
 
 const auth = firebase.auth();
 
-function App({ router }) {
+function App(props) {
     const [user, loading] = useAuthState(auth);
-    const [state, setState] = React.useState(router.query);
+    const [state, setState] = React.useState(props.router.query);
 
-    useEffect(() => {
-        setState(router.query);
-    }, [router.query]);
+	useEffect(() => {
+		setState(props.router.query);
+	}, [props.router.query]);
 
     const background_style = {
         background:
@@ -64,11 +62,7 @@ function App({ router }) {
                     {loading ? (
                         <>Loading</>
                     ) : (
-                      user?.email ? (
-                          <Admin user={user} state={state} />
-                      ) : (
-                          <Login />
-                      )
+                        <Preview props={{ state: state }} />
                     )}
                 </Box>
             )}
