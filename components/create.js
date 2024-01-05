@@ -31,7 +31,7 @@ export default function Create({ user }) {
             var batch = db.batch();
             let certRef = db
                 .collection("users")
-                .doc(needAccess.docs[selectedIndex].id);
+                .doc(user.email);
             batch.set(certRef, { cert: generateRandomUserID() });
 
             // Commit the batch

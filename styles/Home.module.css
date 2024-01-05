@@ -1,19 +1,17 @@
 .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 
+  min-height: 100vh;
   width: 100%;
 
   color: white;
 }
 
 .main {
-  padding: 3rem 0;
+  padding: 3rem 0rem 0.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -28,6 +26,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: #353535;
 }
 
 .title a {

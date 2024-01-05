@@ -8,7 +8,6 @@ body {
 
 .container {
   height: 100vh;
-  padding: 0.5rem;
 
   display: flex;
   flex-direction: column;
@@ -16,6 +15,7 @@ body {
   align-items: center;
 
   background-color: #474747;
+  color: white;
 }
 
 .container-item-full-height {

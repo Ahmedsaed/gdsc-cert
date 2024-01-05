@@ -1,9 +1,9 @@
 import "../styles/globals.css";
-
 import firebase from "firebase/app";
 import "firebase/analytics";
 import Head from "next/head";
 import { useEffect } from "react";
+import Logout from "../components/logout";
 
 if (!firebase.apps.length) {
     firebase.initializeApp({
@@ -58,6 +58,7 @@ function MyApp({ Component, pageProps }) {
             </Head>
 
             <div className='container'>
+                <Logout />
                 <Component {...pageProps} />
             </div>
         </>
