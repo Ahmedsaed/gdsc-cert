@@ -193,7 +193,7 @@ export default function Create({ user }) {
                                 setNames(e.target.value);
                             }}
                             value={names}
-                            spellcheck="false"
+                            spellCheck="false"
                             className={styles.textBox}
                             placeholder={
                                 "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
@@ -225,7 +225,7 @@ export default function Create({ user }) {
                             label="Results"
                             value={result}
                             className={styles.textBox}
-                            spellcheck="false"
+                            spellCheck="false"
                         />
                     </div>
                 )}

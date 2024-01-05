@@ -1,0 +1,59 @@
+/* validate Styles */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    outline: black solid 2px;
+    background-color: #f2f2f2;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0/8%);
+
+    border-radius: 18px;
+    width: 450px;
+
+    color: black;
+}
+
+.container .input {
+    min-width: 400px;
+
+    border-radius: 12px;
+    border: 1px solid #B2B2B2;
+
+    outline: black;
+
+    padding: 10px 5px;
+    transition: 0.2s;
+
+    font-size: 16px;
+}
+
+.container p {
+    margin: 0px;
+    font-size: small;
+}
+
+.container button {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 20px;
+
+    border-radius: 12px;
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bolder;
+
+    outline: black solid 1px;
+}
+
+.container button:hover {
+    outline: #0070f3 solid 1px;
+}
