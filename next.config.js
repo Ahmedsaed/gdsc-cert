@@ -1,11 +1,7 @@
 module.exports = {
-  // reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: '/validate/:path*',
-        destination: '/validate.html',
-      },
-    ];
-  }
+  reactStrictMode: true,
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
 };
