@@ -9,7 +9,7 @@ export default function Cert({params}) {
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setWidth(window.innerWidth);
+            setWidth(window.innerWidth > 1600 ? 1600 : window.innerWidth);
         }
     }, []);
 
@@ -26,10 +26,9 @@ export default function Cert({params}) {
     }
 
     return width ? (
-        <Box
-            pt={3}
+        <div
             style={{
-                width: width - 20,
+                width: width * 0.9,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -45,16 +44,24 @@ export default function Cert({params}) {
                 {...params}
                 style={{ width: width * 0.9 }}
             />
-            <Box m={5}>
-                <Button
-                    color="primary"
-                    variant="contained"
+            <div>
+                <button
+                    style={{
+                        backgroundColor: "#0f9d58",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: "none",
+                        borderRadius: "5px",
+                        fontSize: "1.2rem",
+                        cursor: "pointer",
+                        marginTop: "20px",
+                    }}
                     onClick={handleDownloadBtn}
                 >
                     Download
-                </Button>
-            </Box>
-        </Box>
+                </button>
+            </div>
+        </div>
     ) : (
         <>
             <h1>
