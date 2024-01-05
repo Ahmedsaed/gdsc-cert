@@ -1,12 +1,12 @@
-import GDSC from "../components/GDSC";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-                <GDSC />
+                <Image src="/gdsc-white.png" width="340" height="54" /> {/* h: 22 */}
                 <p className={styles.description}>Certificates🎉</p>
                 <div className={styles.grid}>
                     <Link href="/create">
