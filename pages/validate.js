@@ -32,7 +32,7 @@ export default function Validate() {
                 </p>
             </div>
 
-            <Link href={`/c/${value}`}>
+            <Link passHref href={`/c/${value}`}>
                 <button variant="contained" color="primary">
                     Validate
                 </button>

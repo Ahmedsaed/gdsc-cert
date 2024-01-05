@@ -15,7 +15,7 @@ export default function C(props) {
         if (typeof window !== "undefined" && router.isReady) {
             setID(router.query.id);
         }
-    }, [router.isReady]);
+    }, [router.isReady, router.query.id]);
 
     useEffect(() => {
         if (typeof window !== "undefined" && id) {

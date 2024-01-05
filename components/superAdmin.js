@@ -1,34 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-    TextField,
-    Paper,
-    Box,
-    Typography,
-    Button,
-    List,
-    ListItem,
-    Divider,
-} from "@material-ui/core";
 import firebase from "firebase/app";
 import { useCollection } from "react-firebase-hooks/firestore";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: "#F5F5F5",
-    },
-    textBox: {
-        margin: "20px",
-        padding: "2px 4px",
-        display: "flex",
-        alignItems: "center",
-        width: 330,
-    },
-    input: {},
-    iconButton: {
-        padding: 10,
-    },
-}));
+import styles from "../styles/SuperAdmin.module.css";
 
 export default function SuperAdmin({ user }) {
     const [value, loading, error] = useCollection(
@@ -88,40 +61,43 @@ export default function SuperAdmin({ user }) {
 
     const UsersList = (value) => (
         <>
-            <Box
-                flexDirection="column"
-                display="flex"
-                alignItems="center"
-                p={3}
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
             >
-                <Typography variant="h5"> Users {value.docs.length}</Typography>
+                <h5> Users {value.docs.length}</h5>
                 {value.docs.map((doc) => (
-                    <React.Fragment key={doc.id}>
-                        <Box
-                            display="flex"
-                            width="100%"
-                            justifyContent="space-between"
+                    <div key={doc.id}>
+                        <div
+                            style={{
+                                display: "flex",
+                                width: "100%",
+                                justifyContent: "space-between",
+                            }}
                         >
-                            <Typography style={{ wordBreak: "break-all" }}>
+                            <p style={{ wordBreak: "break-all" }}>
                                 {doc.id}
-                            </Typography>
-                            <Typography>{doc.data().cert}</Typography>
-                        </Box>
-                    </React.Fragment>
+                            </p>
+                            <p>{doc.data().cert}</p>
+                        </div>
+                    </div>
                 ))}
-            </Box>
+            </div>
         </>
     );
 
     const AccessApprovalList = (needAccess) => needAccess.docs.length > 0 && (
         <span>
-            <Typography variant="h5">
+            <h5>
                 {" "}
                 need Access {needAccess.docs.length}
-            </Typography>
+            </h5>
             <List component="nav" aria-label="main mailbox folders">
                 {needAccess.docs.map((doc, indx) => (
-                    <React.Fragment key={doc.id}>
+                    <div key={doc.id}>
                         <ListItem
                             button
                             selected={selectedIndex === indx}
@@ -145,7 +121,7 @@ export default function SuperAdmin({ user }) {
                         </ListItem>
 
                         <Divider />
-                    </React.Fragment>
+                    </div>
                 ))}
             </List>
             <TextField
@@ -191,14 +167,14 @@ export default function SuperAdmin({ user }) {
                 <>Loading...</>
             ) : value ? (
                 <>
-                    <Paper style={{ margin: "50px" }} elevation={10}>
+                    <div style={{ margin: "50px" }}>
                         {UsersList(value)}
                         {loadingNeedAccess ? (
                             <>Loading...</>
                         ) : (
                             AccessApprovalList(needAccess)
                         )}
-                    </Paper>
+                    </div>
                 </>
             ) : (
                 NoAccessWarning

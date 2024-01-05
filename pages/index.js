@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-                <Image src="/gdsc-white.png" width="340" height="54" /> {/* h: 22 */}
+                <Image src="/gdsc-white.png" width="340" height="54" alt='logo' /> {/* h: 22 */}
                 <p className={styles.description}>Certificates🎉</p>
                 <div className={styles.grid}>
                     <Link href="/create">

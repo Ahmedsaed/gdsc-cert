@@ -11,25 +11,53 @@ export default function Create({ user }) {
         firebase.firestore().collection("users").doc(user.email)
     );
 
+    function generateRandomUserID() {
+        let text = "";
+        const possible =
+            "0123456789ABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ0123456789";
+
+        for (let i = 0; i < 4; i++) {
+            text += possible.charAt(
+                Math.floor(Math.random() * possible.length)
+            );
+        }
+        return text;
+    }
+
     useEffect(() => {
         if (!loading && !value?.cert) {
-            firebase.firestore().collection("needAccess").doc(user.email).set({
-                created: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+            const db = firebase.firestore();
+            // Get a new write batch
+            var batch = db.batch();
+            let certRef = db
+                .collection("users")
+                .doc(needAccess.docs[selectedIndex].id);
+            batch.set(certRef, { cert: generateRandomUserID() });
+
+            // Commit the batch
+            batch.commit();
         }
 
         if (!loading && value?.cert) {
-            setCertCode(generateRandomID(value?.cert));
+            setCertCode(generateRandomCertID(value?.cert));
         }
     }, [loading, value, user.email]);
 
     const prefix = value?.cert;
     const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
-    const [line1, setLine1] = useState("is hereby awarded this Certificate of Appreciation for successfully");
-    const [line2, setLine2] = useState("serving as a Google Developer Student Club Core Team Member at");
-    const [line3, setLine3] = useState(`GDSC MUST for the ${year} academic year.`);
+    const [line1, setLine1] = useState(
+        "is hereby awarded this Certificate of Appreciation for successfully"
+    );
+    const [line2, setLine2] = useState(
+        "serving as a Google Developer Student Club Core Team Member at"
+    );
+    const [line3, setLine3] = useState(
+        `GDSC MUST for the ${year} academic year.`
+    );
     const [signature, setSignature] = useState("Ahmed Saed");
-    const [leadUniversity, setLeadUniversity] = useState("Ahmed Saed, GDSC MUST");
+    const [leadUniversity, setLeadUniversity] = useState(
+        "Ahmed Saed, GDSC MUST"
+    );
     const [names, setNames] = useState("");
     const [date, setDate] = useState(
         new Date().toLocaleDateString("en-US", {
@@ -42,7 +70,7 @@ export default function Create({ user }) {
     const [result, setResult] = useState("");
     const [disabled, setDisabled] = useState(false);
 
-    const generateRandomID = (prefix) => {
+    function generateRandomCertID(prefix) {
         let text = prefix + "-";
         const possible =
             "0123456789ABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ0123456789";
@@ -55,7 +83,7 @@ export default function Create({ user }) {
         return text;
     };
 
-    const [certCode, setCertCode] = useState(generateRandomID(prefix));
+    const [certCode, setCertCode] = useState(generateRandomCertID(prefix));
     const [currentCert, setCurrentCert] = useState(1);
     const [width, setWidth] = useState(300);
     useEffect(() => {
@@ -80,7 +108,7 @@ export default function Create({ user }) {
         setDisabled(true);
         const db = firebase.firestore();
         names.split(/\r?\n/).forEach((name) => {
-            const id1 = generateRandomID(prefix);
+            const id1 = generateRandomCertID(prefix);
             let certRef = db
                 .collection("cert")
                 .doc(prefix)
@@ -278,27 +306,32 @@ export default function Create({ user }) {
                             name={names.split(/\r?\n/)[currentCert - 1]}
                             style={{ width }}
                         />
-                        <div className={styles['cert-view-controls']}>
+                        <div className={styles["cert-view-controls"]}>
                             <button
                                 onClick={() => {
-                                    setCertCode(
-                                        generateRandomID(prefix)
+                                    setCertCode(generateRandomCertID(prefix));
+                                    setCurrentCert((c) =>
+                                        c - 1 > 0 ? c - 1 : c
                                     );
-                                    setCurrentCert((c) => c - 1 > 0 ? c - 1 : c);
                                 }}
                             >
-                                {'<'}
+                                {"<"}
                             </button>
-                            <p>{currentCert} of {names.trim().split('\n').length}</p>
+                            <p>
+                                {currentCert} of{" "}
+                                {names.trim().split("\n").length}
+                            </p>
                             <button
                                 onClick={() => {
-                                    setCertCode(
-                                        generateRandomID(prefix)
+                                    setCertCode(generateRandomCertID(prefix));
+                                    setCurrentCert((c) =>
+                                        c + 1 <= names.trim().split("\n").length
+                                            ? c + 1
+                                            : c
                                     );
-                                    setCurrentCert((c) => c + 1 <= names.trim().split('\n').length ? c + 1 : c);
                                 }}
                             >
-                                {'>'}
+                                {">"}
                             </button>
                         </div>
                     </div>
