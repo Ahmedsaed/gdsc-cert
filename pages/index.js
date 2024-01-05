@@ -9,28 +9,28 @@ export default function Home() {
                 <GDSC />
                 <p className={styles.description}>Certificates🎉</p>
                 <div className={styles.grid}>
-                    <Link href="/validate">
+                    <Link href="/create">
                         <a className={styles.card}>
-                            <h2>Validate Certificate &rarr;</h2>
+                            <h2>Create Certificates &rarr;</h2>
                             <p>
-                                Verify the authenticity of certificate by
-                                it&apos;s code{" "}
+                                Create a new certificate <br/>(Leads Only)
                             </p>
                         </a>
                     </Link>
                     <Link href="/preview">
                         <a className={styles.card}>
-                            <h2>Preview Certificate &rarr;</h2>
+                            <h2>Preview Certificates &rarr;</h2>
                             <p>
-                                Add names on certificates and see how it looks
+                                Browse the certificates you created before
                             </p>
                         </a>
                     </Link>
-                    <Link href="/admin">
+                    <Link href="/validate">
                         <a className={styles.card}>
-                            <h2>Create Certificates &rarr;</h2>
+                            <h2>Validate Certificate &rarr;</h2>
                             <p>
-                                For Google Develeloper Student Clubs Leads Only
+                                Verify the authenticity of a certificate by
+                                it&apos;s code{" "}
                             </p>
                         </a>
                     </Link>
@@ -39,25 +39,16 @@ export default function Home() {
                         className={styles.card}
                     >
                         <h2>More About &rarr;</h2>
-                        <p>Contact The Maintainer and Check more Projects</p>
+                        <p>Contact the maintainer and check more projects</p>
                     </a>
                 </div>
             </main>
 
             <footer className={styles.footer}>
-                <div>
-                    <h1 className={styles.title}>
-                        Maintained by{" "}
-                        <a href="https://github.com/Ahmedsaed">Ahmed Saed</a>
-                    </h1>
-                    <br />
-                    <h2 className={styles.title}>
-                        Made with 💖 by{" "}
-                        <a href="https://github.com/dev-ahmedhany">
-                            Ahmed Hany
-                        </a>
-                    </h2>
-                </div>
+                <h1 className={styles.title}>
+                    Maintained by{" "}
+                    <a href="https://github.com/Ahmedsaed">Ahmed Saed</a>
+                </h1>
             </footer>
         </div>
     );

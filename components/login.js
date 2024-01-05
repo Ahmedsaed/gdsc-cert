@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Button } from "@material-ui/core";
-import Particles from "react-particles-js";
 import firebase from "firebase/app";
+import Image from "next/image";
+import styles from "../styles/Login.module.css";
 
 export default function Login() {
     const signInWithGoogle = () => {
@@ -17,38 +17,23 @@ export default function Login() {
     };
 
     return (
-        <>
-            <Button
-                variant="contained"
-                style={{
-                    backgroundColor: "#fff",
-                    borderRadius: "4px",
-                    border: "rgba(0,125,255,0.5) solid 1px",
-                    color: "#007DFF",
-                    textTransform: "capitalize",
-                    width: "210px",
-                }}
-                startIcon={
-                    <img
-                        src="google-logo.png"
+        <div className={styles['login-menu']}>
+            <h2>Sign In | Sign Up</h2>
+            <button onClick={signInWithGoogle}>
+                <div className={styles['google-logo']}>
+                    <Image
+                        src="/google-logo.png"
                         alt="Google Logo"
-                        style={{ height: "24px", marginRight: "-4px" }}
+                        style={styles['google-logo']}
+                        width={24}
+                        height={24}
                     />
-                }
-                onClick={signInWithGoogle}
-            >
-                <h4
-                    style={{
-                        fontWeight: 500,
-                        fontSize: "15px",
-                        lineHeight: "26px",
-                        letterSpacing: "0.46px",
-                        margin: "2px 0px",
-                    }}
-                >
-                    Sign In With Google
-                </h4>
-            </Button>
-        </>
+                </div>
+                <span>
+                    Google
+                </span>
+            </button>
+            <a className={styles["login-menu-link"]} href="mailto:mail@ahmedsaed.me">Have a problem?</a>
+        </div>
     );
 }

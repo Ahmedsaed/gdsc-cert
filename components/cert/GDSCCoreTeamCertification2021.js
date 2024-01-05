@@ -2,6 +2,7 @@ import * as React from "react";
 
 function SvgComponent({
     title,
+    line1,
     line2,
     line3,
     id,
@@ -13,10 +14,6 @@ function SvgComponent({
     style,
     ...props
 }) {
-    const customTemplate1 = Boolean(
-        line2 === "serving as Organizer at Google Developer Student Club at"
-    );
-
     return (
         <>
             <svg
@@ -251,8 +248,7 @@ function SvgComponent({
                     fontSize="16px"
                     className="text__cls"
                 >
-                    is hereby awarded this Certificate of Appreciation for
-                    successfully
+                    {line1}
                 </text>
                 <text
                     x="106"
@@ -262,8 +258,7 @@ function SvgComponent({
                     fontSize="16px"
                     className="text__cls"
                 >
-                    {line2 ||
-                        "serving as a Google Developer Student Club Core Team Member at"}
+                    {line2}
                 </text>
                 {university ? (
                     <>
@@ -337,29 +332,9 @@ function SvgComponent({
                 >
                     {leadUniversity}
                 </text>
-                {customTemplate1 && (
-                    <>
-                        <path
-                            stroke="#595959"
-                            strokeLinejoin="round"
-                            strokeLinecap="butt"
-                            d="M460 436.986h100.488"
-                        ></path>
-                        <text
-                            x="460"
-                            y="460"
-                            fill="#676c72"
-                            fontFamily={`'Open Sans'`}
-                            fontSize="12px"
-                            className="text__cls"
-                        >
-                            Students Affairs
-                        </text>
-                    </>
-                )}
                 <text
                     x="460"
-                    y={customTemplate1 ? "484" : "431"}
+                    y={"431"}
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="10px"
@@ -372,7 +347,7 @@ function SvgComponent({
                 </text>
                 <text
                     x="460"
-                    y={customTemplate1 ? "498" : "445"}
+                    y={"445"}
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="10px"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
 import Head from "next/head";
 

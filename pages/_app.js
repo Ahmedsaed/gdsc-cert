@@ -57,7 +57,9 @@ function MyApp({ Component, pageProps }) {
                 <meta name="theme-color" content="#ffffff" />
             </Head>
 
-            <Component {...pageProps} />
+            <div className='container'>
+                <Component {...pageProps} />
+            </div>
         </>
     );
 }
