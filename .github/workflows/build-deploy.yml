@@ -58,6 +58,7 @@ jobs:
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
         channelId: live
         projectId: gdsc23-cert
+        target: gdsc-certificates
 
     - name: Deploy preview
       if: github.ref != 'refs/heads/main'
@@ -67,3 +68,4 @@ jobs:
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
         channelId: preview
         projectId: gdsc23-cert
+        target: gdsc-certificates
