@@ -139,7 +139,7 @@ export default function Create({ user }) {
                 });
             })
                 .then(({ name, id1 }) => {
-                    const finalResult = `${name}\r\nhttps://gdsc23-cert.web.app/c/${id1}\r\n`;
+                    const finalResult = `${name}\r\nhttps://${window.location.host}/c/${id1}\r\n`;
                     setResult((r) => r + finalResult);
                 })
                 .catch((err) => {
