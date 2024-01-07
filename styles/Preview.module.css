@@ -95,7 +95,8 @@
 }
 
 .cert-btn-group button:nth-child(1) {
-    margin-right: auto;
+    text-align: left;
+    width: 100%;
 }
 
 .cert-btn-group button:nth-child(2) {
