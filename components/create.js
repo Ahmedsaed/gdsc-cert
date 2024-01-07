@@ -122,6 +122,7 @@ export default function Create({ user }) {
                     }
                     transaction.set(certRef, {
                         title,
+                        line1,
                         line2,
                         name,
                         line3,
