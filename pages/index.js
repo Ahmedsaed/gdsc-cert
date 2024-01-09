@@ -1,11 +1,13 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Image from "next/image";
+import gdscWhiteLogo from "../public/gdsc-white.png";
 
 export default function Home() {
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-                <img src="/gdsc-white.png" width="340" height="54" alt='logo' /> {/* h: 22 */}
+                <Image src={gdscWhiteLogo} width={340} height={54} priority={true} alt='logo' /> {/* h: 22 */}
                 <p className={styles.description}>Certificates 🎉</p>
                 <div className={styles.grid}>
                     <Link className={styles.card} href="/create">

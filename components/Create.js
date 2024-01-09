@@ -316,7 +316,7 @@ export default function Create({ user }) {
                 </div>
             ) : (
                 <>
-                    Creating Account. This shouldn't take long.
+                    Creating Account. This shouldn&apos;t take long.
                 </>
             )}
         </>
