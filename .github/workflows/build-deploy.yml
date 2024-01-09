@@ -42,9 +42,6 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Export project
-      run: npm run export
-
     - name: Deploy
       if: github.ref == 'refs/heads/main'
       uses: FirebaseExtended/action-hosting-deploy@v0
