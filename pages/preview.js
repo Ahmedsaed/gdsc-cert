@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import firebase from "firebase/app";
-import Login from "../components/login";
 import "firebase/firestore";
 import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Preview from "../components/preview";
+import Login from "../components/Login";
+import Preview from "../components/Preview";
 
 const auth = firebase.auth();
 

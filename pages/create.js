@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import Create from "../components/create";
-import Login from "../components/login";
+import React from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import Create from "../components/Create";
+import Login from "../components/Login";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const auth = firebase.auth();

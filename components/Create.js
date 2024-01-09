@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
+import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import styles from "../styles/Create.module.css";
-import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
 
 const year = "2023 - 2024";
 
@@ -36,6 +36,11 @@ export default function Create({ user }) {
 
             // Commit the batch
             batch.commit();
+
+            // wait and reload component
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         }
 
         if (!loading && value?.cert) {
@@ -45,19 +50,11 @@ export default function Create({ user }) {
 
     const prefix = value?.cert;
     const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
-    const [line1, setLine1] = useState(
-        "is hereby awarded this Certificate of Appreciation for successfully"
-    );
-    const [line2, setLine2] = useState(
-        "serving as a Google Developer Student Club Core Team Member at"
-    );
-    const [line3, setLine3] = useState(
-        `GDSC MUST for the ${year} academic year.`
-    );
+    const [line1, setLine1] = useState("is hereby awarded this Certificate of Appreciation for successfully");
+    const [line2, setLine2] = useState("serving as a Google Developer Student Club Core Team Member at");
+    const [line3, setLine3] = useState(`GDSC MUST for the ${year} academic year.`);
     const [signature, setSignature] = useState("Ahmed Saed");
-    const [leadUniversity, setLeadUniversity] = useState(
-        "Ahmed Saed, GDSC MUST"
-    );
+    const [leadUniversity, setLeadUniversity] = useState("Ahmed Saed, GDSC MUST");
     const [names, setNames] = useState("");
     const [date, setDate] = useState(
         new Date().toLocaleDateString("en-US", {
@@ -262,26 +259,6 @@ export default function Create({ user }) {
         </>
     );
 
-    const RequestAdminMenu = (
-        <div className={styles["request-access-menu"]}>
-            <h2>Request Admin Access</h2>
-            <p>
-                {`You don't have admin rights`}
-                <br />
-                {`Contact Ahmed Saed, your Email : `}
-                <br />
-                {`${user.email}`}
-            </p>
-            <button
-                onClick={() => {
-                    firebase.auth().signOut();
-                }}
-            >
-                Log out
-            </button>
-        </div>
-    );
-
     return (
         <>
             {loading ? (
@@ -295,7 +272,7 @@ export default function Create({ user }) {
                     {CreateCertMenu}
                     <div className={styles["cert-view"]}>
                         <h2>Preview</h2>
-                        <GDSCCoreTeamCertification2021
+                        <CertificateTemplate1
                             id={certCode}
                             title={title}
                             line1={line1}
@@ -338,7 +315,9 @@ export default function Create({ user }) {
                     </div>
                 </div>
             ) : (
-                RequestAdminMenu
+                <>
+                    Creating Account. This shouldn't take long.
+                </>
             )}
         </>
     );

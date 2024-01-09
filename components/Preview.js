@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import styles from "../styles/Preview.module.css";
-import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
+import CertificateTemplate1 from "./cert/CertificateTemplate1";
 
 
 export default function Preview({ user }) {
@@ -73,7 +73,7 @@ export default function Preview({ user }) {
                         );
                     }}
                 >
-                    🔗
+                    <i class="fa-solid fa-link"></i>
                 </button>
                 <button
                     onClick={() => {
@@ -94,30 +94,10 @@ export default function Preview({ user }) {
         );
     });
 
-    const RequestAdminMenu = (
-        <div className={styles["request-access-menu"]}>
-            <h2>Request Admin Access</h2>
-            <p>
-                {`You don't have admin rights`}
-                <br />
-                {`Contact Ahmed Saed, your Email : `}
-                <br />
-                {`${user.email}`}
-            </p>
-            <button
-                onClick={() => {
-                    firebase.auth().signOut();
-                }}
-            >
-                Log out
-            </button>
-        </div>
-    );
-
     return (
         <>
             {loading ? (
-                <div></div>
+                <div>Loading...</div>
             ) : certificates ? (
                 <div
                     className={
@@ -127,27 +107,24 @@ export default function Preview({ user }) {
                     <div className={styles['cert-list']}>
                         <h2>View Certificate</h2>
                         <div className={styles["cert-list-wrapper"]}>
+                            {certificates.length === 0 && (
+                                <p><b>No Certificates</b></p>
+                            )}
                             {CertificateList}
                         </div>
                     </div>
                     <div className={styles["cert-view"]}>
                         <h2>Preview</h2>
-                        <GDSCCoreTeamCertification2021
-                            id={currentCert.id}
-                            title={currentCert.title}
-                            line1={currentCert.line2}
-                            line2={currentCert.line2}
-                            line3={currentCert.line3}
-                            signature={currentCert.signature}
-                            leadUniversity={currentCert.leadUniversity}
-                            date={currentCert.date}
-                            name={currentCert.name}
+                        <CertificateTemplate1
+                            {...currentCert}
                             style={{ width }}
                         />
                     </div>
                 </div>
             ) : (
-                RequestAdminMenu
+                <>
+                    Error. No account found. Please contact the administrator.
+                </>
             )}
         </>
     )

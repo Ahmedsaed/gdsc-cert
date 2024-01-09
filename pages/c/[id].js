@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Cert from "../../components/cert";
-import Head from "next/head";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import CertificateViewer from "../../components/CertificateViewer";
 
 export default function C(props) {
     const router = useRouter();
@@ -72,7 +72,7 @@ export default function C(props) {
                 />
             </Head>
 
-            {id ? <Cert params={{ id, ...value }}></Cert> : <></>}
+            {(id && value) ? <CertificateViewer params={{ id, ...value }}></CertificateViewer> : <>Loading...</>}
         </>
     ) : (
       <div >Not Found</div>

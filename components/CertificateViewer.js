@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
+import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import Head from "next/head";
 import styles from "../styles/Certificate.module.css"
 
@@ -46,7 +46,7 @@ export default function Cert({params}) {
             <Head>
                 <meta name="color-scheme" content="normal" />
             </Head>
-            <GDSCCoreTeamCertification2021
+            <CertificateTemplate1
                 {...params}
                 style={{ width: width * 0.9 }}
             />

@@ -91,22 +91,30 @@
 
     text-wrap: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .cert-btn-group button:nth-child(1) {
     text-align: left;
+    text-overflow: ellipsis;
     width: 100%;
 }
 
 .cert-btn-group button:nth-child(2) {
     border-left: black solid 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cert-btn-group button:nth-child(3) {
     border-left: black solid 1px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .request-access-menu {
