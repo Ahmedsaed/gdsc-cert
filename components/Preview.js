@@ -50,6 +50,7 @@ export default function Preview({ user }) {
                 });
 
                 setCertificates(cert_data);
+                setCurrentCert(cert_data[0] ?? {});
             }
 
             getCert();
@@ -73,7 +74,7 @@ export default function Preview({ user }) {
                         );
                     }}
                 >
-                    <i class="fa-solid fa-link"></i>
+                    <i className="fa-solid fa-link"></i>
                 </button>
                 <button
                     onClick={() => {

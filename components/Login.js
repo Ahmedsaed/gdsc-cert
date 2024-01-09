@@ -21,12 +21,11 @@ export default function Login() {
             <h2>Sign In | Sign Up</h2>
             <button onClick={signInWithGoogle}>
                 <div className={styles['google-logo']}>
-                    <Image
-                        src="/google-logo.png"
+                    <img
+                        src="../google-logo.png"
                         alt="Google Logo"
-                        style={styles['google-logo']}
-                        width={24}
-                        height={24}
+                        width="24"
+                        height="24"
                     />
                 </div>
                 <span>
