@@ -21,7 +21,7 @@ export default function Preview({ user }) {
             }
         }
 
-        setWidth((window.innerWidth - 500) * 0.9);
+        handleResize();
 
         // Attach the event listener to the window object
         window.addEventListener("resize", handleResize);
