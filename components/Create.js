@@ -262,7 +262,7 @@ export default function Create({ user }) {
     return (
         <>
             {loading ? (
-                <div></div>
+                <div>Loading...</div>
             ) : prefix ? (
                 <div
                     className={

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Validate.module.css";
 
-export default function Validate() {
+export default function ValidatePage() {
     const [value, setValue] = useState("");
 
     useEffect(() => {

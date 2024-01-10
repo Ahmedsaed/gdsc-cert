@@ -8,7 +8,7 @@ import Preview from "../components/Preview";
 
 const auth = firebase.auth();
 
-export default function App(props) {
+export default function PreviewPage(props) {
     const [user, loading] = useAuthState(auth);
 
     return loading ? (
