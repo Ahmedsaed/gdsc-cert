@@ -1,9 +1,9 @@
 import "../styles/globals.css";
-
 import firebase from "firebase/app";
 import "firebase/analytics";
 import Head from "next/head";
 import { useEffect } from "react";
+import Logout from "../components/Logout";
 
 if (!firebase.apps.length) {
     firebase.initializeApp({
@@ -57,7 +57,10 @@ function MyApp({ Component, pageProps }) {
                 <meta name="theme-color" content="#ffffff" />
             </Head>
 
-            <Component {...pageProps} />
+            <div className='container'>
+                <Logout />
+                <Component {...pageProps} />
+            </div>
         </>
     );
 }

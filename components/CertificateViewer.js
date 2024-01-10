@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button } from "@material-ui/core";
-import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
+import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import Head from "next/head";
+import styles from "../styles/Certificate.module.css"
 
 const saveSvgAsPng = require("save-svg-as-png");
 
@@ -9,9 +9,21 @@ export default function Cert({params}) {
     const [width, setWidth] = useState(null);
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            setWidth(window.innerWidth);
+        function handleResize() {
+            if (typeof window !== "undefined") {
+                setWidth(window.innerWidth * 0.8);
+            }
         }
+
+        handleResize();
+
+        // Attach the event listener to the window object
+        window.addEventListener("resize", handleResize);
+
+        // Remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     function handleDownloadBtn() {
@@ -27,35 +39,26 @@ export default function Cert({params}) {
     }
 
     return width ? (
-        <Box
-            pt={3}
-            style={{
-                width: width - 20,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "100vh",
-            }}
+        <div
+            className={styles['cert-viewer']}
+            style={{ width: width * 0.9 }}
         >
             <Head>
                 <meta name="color-scheme" content="normal" />
-                <style>{"body { background-color: #9e9e9e; }"}</style>
             </Head>
-            <GDSCCoreTeamCertification2021
+            <CertificateTemplate1
                 {...params}
                 style={{ width: width * 0.9 }}
             />
-            <Box m={5}>
-                <Button
-                    color="primary"
-                    variant="contained"
+            <div>
+                <button
+                    className={styles['download-btn']}
                     onClick={handleDownloadBtn}
                 >
                     Download
-                </Button>
-            </Box>
-        </Box>
+                </button>
+            </div>
+        </div>
     ) : (
         <>
             <h1>

@@ -1,0 +1,191 @@
+/* Admin Styles */
+
+.cert-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.create-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    margin: 0px 20px;
+
+    outline: black solid 2px;
+    background-color: #f2f2f2;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0/8%);
+
+    border-radius: 18px;
+    width: 450px;
+    height: 100%;
+
+    color: black;
+}
+
+.create-menu h2 {
+    margin-top: 5px;
+    font-size: 28px;
+}
+
+.input, .textBox {
+    margin-bottom: 8px;
+    min-width: 400px;
+
+    border-radius: 12px;
+    border: 1px solid #B2B2B2;
+
+    outline: black;
+
+    padding: 10px 5px;
+    transition: 0.2s;
+
+    font-size: 16px;
+}
+
+.textBox {
+    overflow-wrap: normal;
+    resize: vertical;
+    overflow-y: hidden;
+    min-height: 200px;
+
+    font-size: 14px;
+
+}
+
+.create-menu-btns {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.create-menu-btns button {
+    margin-left: 10px;
+    padding: 10px 20px;
+
+    border-radius: 12px;
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bolder;
+
+    outline: black solid 1px;
+}
+
+.create-menu-btns button:hover {
+    outline: #0070f3 solid 1px;
+}
+
+.request-access-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+
+    outline: black solid 2px;
+    background-color: #f2f2f2;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0/8%);
+
+    border-radius: 18px;
+    width: fit-content;
+
+    color: black;
+}
+
+.request-access-menu button {
+    margin-top: 10px;
+    padding: 10px 20px;
+
+    width: 100%;
+
+    border-radius: 12px;
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bolder;
+
+    outline: black solid 1px;
+}
+
+.cert-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: white;
+}
+
+.cert-view h2 {
+    margin: 5px;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.share-menu {
+    width: 400px;
+}
+
+.cert-view-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    outline: black solid 2px;
+    background-color: #f2f2f2;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0/8%);
+    color: black;
+
+    margin-top: 20px;
+    border-radius: 18px;
+}
+
+.cert-view-controls button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+
+    padding: 10px 20px;
+    height: 100%;
+}
+
+.cert-view-controls button::after {
+    background: none;
+}
+
+.cert-view-controls button:nth-child(1) {
+    border-right: 1px solid black;
+}
+
+.cert-view-controls button:nth-child(3) {
+    border-left: 1px solid black;
+}
+
+.cert-view-controls p {
+    margin: 0px 10px;
+    font-size: 16px;
+    font-weight: bolder;
+}

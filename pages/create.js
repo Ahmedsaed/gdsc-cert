@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+import Create from "../components/Create";
 import Login from "../components/Login";
-import Preview from "../components/Preview";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const auth = firebase.auth();
 
-export default function PreviewPage(props) {
+export default function CreatePage() {
     const [user, loading] = useAuthState(auth);
 
     return loading ? (
         <div>Loading...</div>
     ) : user?.email ? (
-        <Preview user={user} />
+        <Create user={user} />
     ) : (
         <Login />
     );

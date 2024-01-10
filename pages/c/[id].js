@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Cert from "../../components/cert";
-import Head from "next/head";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import CertificateViewer from "../../components/CertificateViewer";
 
 export default function C(props) {
     const router = useRouter();
@@ -15,7 +15,7 @@ export default function C(props) {
         if (typeof window !== "undefined" && router.isReady) {
             setID(router.query.id);
         }
-    }, [router.isReady]);
+    }, [router.isReady, router.query.id]);
 
     useEffect(() => {
         if (typeof window !== "undefined" && id) {
@@ -42,7 +42,7 @@ export default function C(props) {
                 />
                 <meta
                     name="description"
-                    content={`Google Develelopers Student Clubs Certificate`}
+                    content={`Google Developers Student Clubs Certificate`}
                 />
                 <meta property="og:type" content="article" />
                 <meta
@@ -57,10 +57,6 @@ export default function C(props) {
                     property="og:description"
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
                 />
-                <meta
-                    property="og:image"
-                    content={`https://gdsc23-cert.web.app/c/${value.id}.jpeg`}
-                />
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta
                     property="twitter:url"
@@ -74,15 +70,11 @@ export default function C(props) {
                     property="twitter:description"
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
                 />
-                <meta
-                    property="twitter:image"
-                    content={`https://gdsc23-cert.web.app/c/${value.id}.jpeg`}
-                />
             </Head>
 
-            {id ? <Cert params={{ id, ...value }}></Cert> : <></>}
+            {(id && value) ? <CertificateViewer params={{ id, ...value }}></CertificateViewer> : <>Loading...</>}
         </>
     ) : (
-      <>Not Found</>
+      <div >Not Found</div>
     );
 }

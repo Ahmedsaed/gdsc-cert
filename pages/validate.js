@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Box, Link, TextField, Button, Paper } from "@material-ui/core";
-import Particles from "react-particles-js";
+import Link from "next/link";
+import styles from "../styles/Validate.module.css";
 
-export default function Validate() {
+export default function ValidatePage() {
     const [value, setValue] = useState("");
 
     useEffect(() => {
@@ -12,68 +12,31 @@ export default function Validate() {
         }
     }, []);
 
-    const background_style = {
-        background:
-            "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-        minHeight: "100vh",
-    };
-
     const handle_id_change = (e) => {
         setValue(e.currentTarget.value);
     };
 
     return (
-        <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            style={background_style}
-        >
-            <Particles
-                params={{
-                    particles: {
-                        number: {
-                            value: 50,
-                        },
-                        size: {
-                            value: 3,
-                        },
-                    },
-                    interactivity: {
-                        events: {
-                            onhover: {
-                                enable: true,
-                                mode: "repulse",
-                            },
-                        },
-                    },
-                }}
-            />
-            <Paper elevation={3}>
-                <Box
-                    display="flex"
-                    justifyContent="center"
-                    m={1}
-                    p={1}
-                    flexDirection="column"
-                >
-                    <h1>Verify a certificate</h1>
-                    <TextField
-                        label="Enter Certificate ID"
-                        helperText="The Certificate ID can be found at the bottom of each certificate.."
-                        value={value}
-                        onChange={handle_id_change}
-                    />
+        <div className={styles.container}>
+            <h1>Verify a certificate</h1>
 
-                    <Box m={3} display="flex" justifyContent="flex-end">
-                        <Link href={`/c/${value}`}>
-                            <Button variant="contained" color="primary">
-                                Validate
-                            </Button>
-                        </Link>
-                    </Box>
-                </Box>
-            </Paper>
-        </Box>
+            <div>
+                <input
+                    className={styles.input}
+                    placeholder="Enter Certificate ID"
+                    value={value}
+                    onChange={handle_id_change}
+                />
+                <p>
+                    The Certificate ID can be found at the bottom of each certificate.
+                </p>
+            </div>
+
+            <Link passHref href={`/c/${value}`}>
+                <button variant="contained" color="primary">
+                    Validate
+                </button>
+            </Link>
+        </div>
     );
 }

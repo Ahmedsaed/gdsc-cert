@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
+import React from "react";
 import "firebase/firestore";
-import Head from "next/head";
-import Cert from "../components/cert";
 
-export default function CertPage() {
+export default function NotFound() {
     return (
         <>Page Not Found</>
     );
