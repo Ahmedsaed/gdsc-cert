@@ -1,60 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import firebase from "firebase/app";
-import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import styles from "../styles/Create.module.css";
 
 const year = "2023 - 2024";
 
 export default function Create({ user }) {
-    const [value, loading] = useDocumentDataOnce(
-        firebase.firestore().collection("users").doc(user.email)
-    );
-
-    function generateRandomUserID() {
-        let text = "";
-        const possible =
-            "0123456789ABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ0123456789";
-
-        for (let i = 0; i < 4; i++) {
-            text += possible.charAt(
-                Math.floor(Math.random() * possible.length)
-            );
-        }
-        return text;
-    }
+    const router = useRouter();
+    const [prefix, setPrefix] = useState(localStorage.getItem("prefix"));
 
     useEffect(() => {
-        if (!loading && !value?.cert) {
-            const db = firebase.firestore();
-            // Get a new write batch
-            var batch = db.batch();
-            let certRef = db
-                .collection("users")
-                .doc(user.email);
-            batch.set(certRef, { cert: generateRandomUserID() });
-
-            // Commit the batch
-            batch.commit();
-
-            // wait and reload component
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+        if (prefix) {
+            setCertCode(generateRandomCertID(prefix));
+        } else {
+            router.push(`/login?redirect=${router.asPath}`);
         }
+    }, [prefix, router]);
 
-        if (!loading && value?.cert) {
-            setCertCode(generateRandomCertID(value?.cert));
-        }
-    }, [loading, value, user.email]);
-
-    const prefix = value?.cert;
     const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
-    const [line1, setLine1] = useState("is hereby awarded this Certificate of Appreciation for successfully");
-    const [line2, setLine2] = useState("serving as a Google Developer Student Club Core Team Member at");
-    const [line3, setLine3] = useState(`GDSC MUST for the ${year} academic year.`);
+    const [line1, setLine1] = useState(
+        "is hereby awarded this Certificate of Appreciation for successfully"
+    );
+    const [line2, setLine2] = useState(
+        "serving as a Google Developer Student Club Core Team Member at"
+    );
+    const [line3, setLine3] = useState(
+        `GDSC MUST for the ${year} academic year.`
+    );
     const [signature, setSignature] = useState("Ahmed Saed");
-    const [leadUniversity, setLeadUniversity] = useState("Ahmed Saed, GDSC MUST");
+    const [leadUniversity, setLeadUniversity] = useState(
+        "Ahmed Saed, GDSC MUST"
+    );
     const [names, setNames] = useState("");
     const [date, setDate] = useState(
         new Date().toLocaleDateString("en-US", {
@@ -78,7 +55,7 @@ export default function Create({ user }) {
             );
         }
         return text;
-    };
+    }
 
     const [certCode, setCertCode] = useState(generateRandomCertID(prefix));
     const [currentCert, setCurrentCert] = useState(1);
@@ -260,65 +237,54 @@ export default function Create({ user }) {
     );
 
     return (
-        <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : prefix ? (
-                <div
-                    className={
-                        styles["cert-container"] + " container-item-full-height"
-                    }
-                >
-                    {CreateCertMenu}
-                    <div className={styles["cert-view"]}>
-                        <h2>Preview</h2>
-                        <CertificateTemplate1
-                            id={certCode}
-                            title={title}
-                            line1={line1}
-                            line2={line2}
-                            line3={line3}
-                            signature={signature}
-                            leadUniversity={leadUniversity}
-                            date={date}
-                            name={names.split(/\r?\n/)[currentCert - 1]}
-                            style={{ width }}
-                        />
-                        <div className={styles["cert-view-controls"]}>
-                            <button
-                                onClick={() => {
-                                    setCertCode(generateRandomCertID(prefix));
-                                    setCurrentCert((c) =>
-                                        c - 1 > 0 ? c - 1 : c
-                                    );
-                                }}
-                            >
-                                {"<"}
-                            </button>
-                            <p>
-                                {currentCert} of{" "}
-                                {names.trim().split("\n").length}
-                            </p>
-                            <button
-                                onClick={() => {
-                                    setCertCode(generateRandomCertID(prefix));
-                                    setCurrentCert((c) =>
-                                        c + 1 <= names.trim().split("\n").length
-                                            ? c + 1
-                                            : c
-                                    );
-                                }}
-                            >
-                                {">"}
-                            </button>
-                        </div>
+        prefix && (
+            <div
+                className={
+                    styles["cert-container"] + " container-item-full-height"
+                }
+            >
+                {CreateCertMenu}
+                <div className={styles["cert-view"]}>
+                    <h2>Preview</h2>
+                    <CertificateTemplate1
+                        id={certCode}
+                        title={title}
+                        line1={line1}
+                        line2={line2}
+                        line3={line3}
+                        signature={signature}
+                        leadUniversity={leadUniversity}
+                        date={date}
+                        name={names.split(/\r?\n/)[currentCert - 1]}
+                        style={{ width }}
+                    />
+                    <div className={styles["cert-view-controls"]}>
+                        <button
+                            onClick={() => {
+                                setCertCode(generateRandomCertID(prefix));
+                                setCurrentCert((c) => (c - 1 > 0 ? c - 1 : c));
+                            }}
+                        >
+                            {"<"}
+                        </button>
+                        <p>
+                            {currentCert} of {names.trim().split("\n").length}
+                        </p>
+                        <button
+                            onClick={() => {
+                                setCertCode(generateRandomCertID(prefix));
+                                setCurrentCert((c) =>
+                                    c + 1 <= names.trim().split("\n").length
+                                        ? c + 1
+                                        : c
+                                );
+                            }}
+                        >
+                            {">"}
+                        </button>
                     </div>
                 </div>
-            ) : (
-                <>
-                    Creating Account. This shouldn&apos;t take long.
-                </>
-            )}
-        </>
+            </div>
+        )
     );
 }

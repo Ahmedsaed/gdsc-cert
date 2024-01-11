@@ -26,7 +26,6 @@ jobs:
           **/.next
           **/public/c
           **/node_modules
-          **/data.json
         key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-
@@ -40,7 +39,11 @@ jobs:
       run: npm install
 
     - name: Build project
-      run: npm run build
+      env:
+        NEXT_PUBLIC_PASSWORD: ${{ secrets.NEXT_PUBLIC_PASSWORD }}
+      run: |
+        echo "NEXT_PUBLIC_PASSWORD=$NEXT_PUBLIC_PASSWORD" >> .env.local
+        npm run build
 
     - name: Deploy
       if: github.ref == 'refs/heads/main'
