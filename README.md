@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Node.js (v16.x)
+- Node.js (v21.x)
 - npm
 
 ### Installation
@@ -25,7 +25,6 @@ These instructions will get you a copy of the project up and running on your loc
    ```sh
    npm install
    ```
-   > Note: if npm modified the `package-lock.json` file, please revert the changes before proceeding.
 
 ### Project Setup
 
@@ -33,10 +32,9 @@ These instructions will get you a copy of the project up and running on your loc
 2. Enable the following services:
    - Firebase Hosting
    - Firebase Authentication
-   - Firebase Realtime Database
+   - Firebase Firestore Database
 3. Create a new web app to get the Firebase configuration.
 4. Update the configuration in `firebase.js`, `.firebaserc` and `_app.js` with your Firebase project configuration.
-5. Create a new Cloudflare worker using the code in `cloudflare-worker.js` and update the url in `components/admin.js`.
 6. Create GitHub secrets for build-deploy.yaml
 	- `FIREBASE_SERVICE_ACCOUNT_GDSC_CERT`: Firebase service account JSON
 	- `ACCESS_TOKEN`: GitHub access token
