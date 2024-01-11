@@ -11,6 +11,7 @@ export default function Logout() {
 
 	const signOut = () => {
 		firebase.auth().signOut();
+		localStorage.removeItem("prefix");
 	};
 
 	return user && (

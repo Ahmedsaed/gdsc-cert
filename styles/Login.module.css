@@ -72,3 +72,18 @@
 
     padding: 10px 20px;
 }
+
+.input {
+    margin-bottom: 8px;
+    min-width: 100%;
+
+    border-radius: 12px;
+    border: 1px solid #B2B2B2;
+
+    outline: black;
+
+    padding: 10px 5px;
+    transition: 0.2s;
+
+    font-size: 16px;
+}
