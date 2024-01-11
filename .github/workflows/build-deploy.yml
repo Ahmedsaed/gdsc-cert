@@ -41,7 +41,9 @@ jobs:
     - name: Build project
       env:
         NEXT_PUBLIC_PASSWORD: ${{ secrets.NEXT_PUBLIC_PASSWORD }}
-      run: npm run build
+      run: |
+        echo "NEXT_PUBLIC_PASSWORD=$NEXT_PUBLIC_PASSWORD" >> .env.local
+        npm run build
 
     - name: Deploy
       if: github.ref == 'refs/heads/main'
