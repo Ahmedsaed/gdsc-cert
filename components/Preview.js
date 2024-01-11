@@ -1,18 +1,43 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import firebase from "firebase/app";
-import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import styles from "../styles/Preview.module.css";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 
 
-export default function Preview({ user }) {
+export default function Preview() {
+    const router = useRouter();
+    const [prefix, setPrefix] = useState(localStorage.getItem("prefix"));
+
+    useEffect(() => {
+        if (prefix) {
+            async function getCert() {
+                const cert_docs = await firebase
+                                    .firestore()
+                                    .collection("cert")
+                                    .doc(prefix)
+                                    .collection("core21")
+                                    .get()
+
+                const cert_data = cert_docs.docs.map(doc => {
+                    return {
+                        id: doc.id,
+                        ...doc.data()
+                    }
+                });
+
+                setCertificates(cert_data);
+                setCurrentCert(cert_data[0] ?? {});
+            }
+
+            getCert();
+        } else {
+            router.push(`/login?redirect=${router.asPath}`);
+        }
+    }, [prefix, router]);
+
     const [certificates, setCertificates] = useState([]);
     const [currentCert, setCurrentCert] = useState({});
-
-    const [value, loading] = useDocumentDataOnce(
-        firebase.firestore().collection("users").doc(user.email)
-    );
-
     const [width, setWidth] = useState(300);
     useEffect(() => {
         function handleResize() {
@@ -31,31 +56,6 @@ export default function Preview({ user }) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-
-    useEffect(() => {
-        if (!loading && value?.cert) {
-            async function getCert() {
-                const cert_docs = await firebase
-                                    .firestore()
-                                    .collection("cert")
-                                    .doc(value.cert)
-                                    .collection("core21")
-                                    .get()
-
-                const cert_data = cert_docs.docs.map(doc => {
-                    return {
-                        id: doc.id,
-                        ...doc.data()
-                    }
-                });
-
-                setCertificates(cert_data);
-                setCurrentCert(cert_data[0] ?? {});
-            }
-
-            getCert();
-        }
-    }, [loading, value, user.email]);
 
     const CertificateList = certificates.map((cert) => {
         return (
@@ -81,7 +81,7 @@ export default function Preview({ user }) {
                         firebase
                             .firestore()
                             .collection("cert")
-                            .doc(value.cert)
+                            .doc(prefix)
                             .collection("core21")
                             .doc(cert.id)
                             .delete();
@@ -95,38 +95,28 @@ export default function Preview({ user }) {
         );
     });
 
-    return (
-        <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : certificates ? (
-                <div
-                    className={
-                        styles["cert-container"] + " container-item-full-height"
-                    }
-                >
-                    <div className={styles['cert-list']}>
-                        <h2>View Certificate</h2>
-                        <div className={styles["cert-list-wrapper"]}>
-                            {certificates.length === 0 && (
-                                <p><b>No Certificates</b></p>
-                            )}
-                            {CertificateList}
-                        </div>
-                    </div>
-                    <div className={styles["cert-view"]}>
-                        <h2>Preview</h2>
-                        <CertificateTemplate1
-                            {...currentCert}
-                            style={{ width }}
-                        />
-                    </div>
+    return certificates && (
+        <div
+            className={
+                styles["cert-container"] + " container-item-full-height"
+            }
+        >
+            <div className={styles['cert-list']}>
+                <h2>View Certificate</h2>
+                <div className={styles["cert-list-wrapper"]}>
+                    {certificates.length === 0 && (
+                        <p><b>No Certificates</b></p>
+                    )}
+                    {CertificateList}
                 </div>
-            ) : (
-                <>
-                    Error. No account found. Please contact the administrator.
-                </>
-            )}
-        </>
+            </div>
+            <div className={styles["cert-view"]}>
+                <h2>Preview</h2>
+                <CertificateTemplate1
+                    {...currentCert}
+                    style={{ width }}
+                />
+            </div>
+        </div>
     )
 }
