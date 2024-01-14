@@ -55,6 +55,7 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="theme-color" content="#ffffff" />
+                <meta name="google-site-verification" content="e9K5dtnY1TbK5tWbc-cwrDoJnStqGowr6afQ5cmD4Wc" />
             </Head>
 
             <div className='container'>
