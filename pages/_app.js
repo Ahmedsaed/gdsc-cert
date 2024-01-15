@@ -51,11 +51,11 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta
                     name="title"
-                    content='GDSC Certificates'
+                    content='Certificate Generator - Google Developers Student Clubs'
                 />
                 <meta
                     name="description"
-                    content="Google Developers Student Clubs Certificates App"
+                    content="Certificate management web app. Create, Verify and Share Certificates."
                 />
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="theme-color" content="#ffffff" />
