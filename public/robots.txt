@@ -1,4 +1,4 @@
-//robots.txt
+# robots.txt
 
 # Block all crawlers for /accounts
 User-agent: *
