@@ -50,8 +50,12 @@ function MyApp({ Component, pageProps }) {
                     color="#845c5c"
                 />
                 <meta
+                    name="title"
+                    content='GDSC Certificates'
+                />
+                <meta
                     name="description"
-                    content="Google Developers Student Clubs Certificates app"
+                    content="Google Developers Student Clubs Certificates App"
                 />
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="theme-color" content="#ffffff" />
