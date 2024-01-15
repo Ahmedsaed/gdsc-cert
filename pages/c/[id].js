@@ -22,7 +22,12 @@ export default function C(props) {
             firebase
                 .firestore()
                 .collection("cert")
-                .doc(id.split("-")[0])
+                .doc(id.split("-").length > 1 ? id.split("-")[0] :
+                    (id.startsWith("omarffhj") ?
+                        "omarffhj" :
+                        (id.startsWith('asd') ? "asd" : "")
+                    )
+                )                                               // This is a hard coded fix for the old certificates. (Original: id.split("-")[0])
                 .collection("core21")
                 .doc(id)
                 .get()
@@ -31,6 +36,7 @@ export default function C(props) {
                 });
         }
     }, [id]);
+
 
     return value ? (
         <>
