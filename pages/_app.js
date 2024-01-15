@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="google-site-verification" content="e9K5dtnY1TbK5tWbc-cwrDoJnStqGowr6afQ5cmD4Wc" />
-                <link rel="canonical" href="https://example.com"/>
+                <link rel="canonical" href="https://gdsc-certificates.web.app/"/>
             </Head>
 
             <div className='container'>
