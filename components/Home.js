@@ -15,7 +15,6 @@ export default function Home() {
                     priority={true}
                     alt="logo"
                 />{" "}
-                {/* h: 22 */}
                 <p className={styles.description}>Certificates 🎉</p>
                 <div className={styles.grid}>
                     <Link className={styles.card} href="/create" prefetch={false}>
@@ -38,7 +37,7 @@ export default function Home() {
                     </Link>
                     <Link
                         className={styles.card}
-                        href="https://www.linkedin.com/in/ahmedsaed26/"
+                        href="https://github.com/Ahmedsaed/"
                         prefetch={false}
                     >
                         <h2>More About &rarr;</h2>
@@ -50,7 +49,7 @@ export default function Home() {
             <footer className={styles.footer}>
                 <h1 className={styles.title}>
                     Maintained by{" "}
-                    <a href="https://github.com/Ahmedsaed">Ahmed Saed</a>
+                    <a href="https://www.linkedin.com/in/ahmedsaed26/">Ahmed Saed</a>
                 </h1>
             </footer>
         </div>
