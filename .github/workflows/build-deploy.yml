@@ -3,15 +3,7 @@ name: Build & deploy
 on:
   push:
     branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: "0 0 * * *"
-  repository_dispatch:
-    types: [start-build-workflow]
+      - v1.x.x
 
 jobs:
   buildDeploy:
@@ -54,19 +46,10 @@ jobs:
         node-version: 18.x
 
     - name: Deploy
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/v1.x.x'
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: '${{ secrets.ACCESS_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
         channelId: live
-        projectId: gdsc23-cert
-
-    - name: Deploy preview
-      if: github.ref != 'refs/heads/main'
-      uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: '${{ secrets.ACCESS_TOKEN }}'
-        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_CERT }}'
-        channelId: preview
         projectId: gdsc23-cert
