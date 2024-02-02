@@ -12,6 +12,8 @@ function SvgComponent({
     leadUniversity,
     date,
     style,
+    host,
+    background_image,
     ...props
 }) {
     leadUniversity = leadUniversity || "";
@@ -54,7 +56,7 @@ function SvgComponent({
                             width={2048}
                             height={1152}
                             preserveAspectRatio="none"
-                            xlinkHref="/blank_certificate.png"
+                            xlinkHref={background_image ?? "/blank_certificate.png"}
                         />
                     </g>
                     <path
@@ -325,7 +327,7 @@ function SvgComponent({
                 </text>
                 <text
                     x="106"
-                    y="445"
+                    y="450"
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="12px"
@@ -335,9 +337,8 @@ function SvgComponent({
                         <tspan
                             key={index}
                             x="106"
-                            y={450 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
+                            y={455 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
                             dominantBaseline="middle"  // Center the text vertically
-                            // textAnchor="middle"  // Center the text horizontally
                         >
                             {str}
                         </tspan>
@@ -379,7 +380,7 @@ function SvgComponent({
                 >
                     Verify the authenticity of this certificate at:
                     <tspan fontWeight="500" fontFamily="Roboto">
-                        {` https://${window.location.host}/c/${id}`}
+                        {`https://${host ?? window.location.host}/c/${id}`}
                     </tspan>
                 </text>
             </svg>
