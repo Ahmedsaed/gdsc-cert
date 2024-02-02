@@ -231,6 +231,7 @@ export default function Create({ user }) {
                             value={result}
                             className={styles.textBox}
                             spellCheck="false"
+                            style={{ minHeight: "200px" }}
                         />
                     </div>
                 )}
