@@ -54,8 +54,6 @@ To start the production server, run the following command:
 npm run start
 ```
 
-For more information on how the project works, take a look at issue [#3](https://github.com/Ahmedsaed/gdsc-cert/issues/3).
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
