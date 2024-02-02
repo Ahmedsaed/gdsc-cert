@@ -53,10 +53,8 @@
     overflow-wrap: normal;
     resize: vertical;
     overflow-y: hidden;
-    min-height: 200px;
 
     font-size: 14px;
-
 }
 
 .create-menu-btns {

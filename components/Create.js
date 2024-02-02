@@ -168,13 +168,14 @@ export default function Create({ user }) {
                             className={styles.input}
                             placeholder="Signature"
                         />
-                        <input
+                        <textarea
                             onChange={(e) => {
                                 setLeadUniversity(e.target.value);
                             }}
                             value={leadUniversity}
-                            className={styles.input}
+                            className={styles.textBox}
                             placeholder="Lead Name, University"
+                            style={{ minHeight: "100px" }}
                         />
                         <input
                             onChange={(e) => {
@@ -201,6 +202,7 @@ export default function Create({ user }) {
                             placeholder={
                                 "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
                             }
+                            style={{ minHeight: "200px" }}
                         />
                         <div className={styles["create-menu-btns"]}>
                             <button

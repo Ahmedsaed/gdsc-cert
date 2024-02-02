@@ -212,7 +212,7 @@ function SvgComponent({
                         stroke="#595959"
                         strokeLinejoin="round"
                         strokeLinecap="butt"
-                        d="M104.68 436.986h338.488"
+                        d={`M104.68 ${446.986 - (14 * leadUniversity.split('\n').length / 2)}h338.488`}
                     />
                     <path
                         fill="none"
@@ -314,7 +314,7 @@ function SvgComponent({
                 )}
                 <text
                     x="106"
-                    y="430"
+                    y={435 - (14 * leadUniversity.split('\n').length / 2)}
                     fill="#da3936"
                     fontFamily={`'Dancing Script'`}
                     fontSize="44px"
@@ -324,13 +324,23 @@ function SvgComponent({
                 </text>
                 <text
                     x="106"
-                    y="460"
+                    y="445"
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="12px"
                     className="text__cls"
                 >
-                    {leadUniversity}
+                    {leadUniversity.split("\n").map((str, index, array) => (
+                        <tspan
+                            key={index}
+                            x="106"
+                            y={450 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
+                            dominantBaseline="middle"  // Center the text vertically
+                            // textAnchor="middle"  // Center the text horizontally
+                        >
+                            {str}
+                        </tspan>
+                    ))}
                 </text>
                 <text
                     x="460"
