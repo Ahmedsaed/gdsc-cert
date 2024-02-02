@@ -5,7 +5,7 @@ import ReactDOMServer from "react-dom/server";
 import CertificateTemplate1 from "../../components/cert/CertificateTemplate1";
 import db from "../../firebase-config";
 
-export default async (req, res) => {
+export default async function handler(req, res) {
     const { id } = req.query;
     let data = null;
 
