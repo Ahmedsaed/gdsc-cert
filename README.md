@@ -1,5 +1,9 @@
 # GDSC Certificate Generator
 
+> [!NOTE]
+> This branch hosts the api code for generating the certificate images for image previews and thumbnails.
+> It's meant to be hosted on vercel while the rest of the project is hosted on firebase.
+
 This project is a certificate generator website for Google Developer Student Clubs (GDSC). It's built using Next.js and hosted on Firebase. The project also utilizes Firebase Hosting, Firebase Authentication and Firebase Database services, along with a Cloudflare worker.
 
 ## Getting Started
@@ -25,19 +29,6 @@ These instructions will get you a copy of the project up and running on your loc
    ```sh
    npm install
    ```
-
-### Project Setup
-
-1. Create a new Firebase project.
-2. Enable the following services:
-   - Firebase Hosting
-   - Firebase Authentication
-   - Firebase Firestore Database
-3. Create a new web app to get the Firebase configuration.
-4. Update the configuration in `firebase.js`, `.firebaserc` and `_app.js` with your Firebase project configuration.
-6. Create GitHub secrets for build-deploy.yaml
-	- `FIREBASE_SERVICE_ACCOUNT_GDSC_CERT`: Firebase service account JSON
-	- `ACCESS_TOKEN`: GitHub access token
 
 ## Usage
 
