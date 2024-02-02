@@ -14,6 +14,7 @@ function SvgComponent({
     style,
     ...props
 }) {
+    leadUniversity = leadUniversity || "";
     return (
         <>
             <svg
