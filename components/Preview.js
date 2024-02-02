@@ -32,7 +32,7 @@ export default function Preview() {
 
             getCert();
         } else {
-            router.push(`/login?redirect=${router.asPath}`);
+            router.replace(`/login?redirect=${router.asPath}`);
         }
     }, [prefix, router]);
 

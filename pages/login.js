@@ -24,7 +24,7 @@ export default function CreatePage() {
 			else
 				router.replace('/');
 		}
-	}, [loading, user?.email, prefix]);
+	}, [loading, user?.email, prefix, router]);
 
     return loading ? (
         <div>Loading...</div>

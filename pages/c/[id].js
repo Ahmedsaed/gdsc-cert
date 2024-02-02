@@ -22,7 +22,12 @@ export default function C(props) {
             firebase
                 .firestore()
                 .collection("cert")
-                .doc(id.split("-")[0])
+                .doc(id.split("-").length > 1 ? id.split("-")[0] :
+                    (id.startsWith("omarffhj") ?
+                        "omarffhj" :
+                        (id.startsWith('asd') ? "asd" : "")
+                    )
+                )                                               // This is a hard coded fix for the old certificates. (Original: id.split("-")[0])
                 .collection("core21")
                 .doc(id)
                 .get()
@@ -32,6 +37,7 @@ export default function C(props) {
         }
     }, [id]);
 
+
     return value ? (
         <>
             <Head>
@@ -39,37 +45,46 @@ export default function C(props) {
                 <meta
                     name="title"
                     content={`${value.name} - GDSC Certificate`}
+                    key="title"
                 />
                 <meta
                     name="description"
-                    content={`Google Developers Student Clubs Certificate`}
+                    content="Google Developers Student Clubs Certificate"
+                    key="descripttion"
                 />
-                <meta property="og:type" content="article" />
+                <meta property="og:type" content="article" key="og:type" />
                 <meta
                     property="og:url"
-                    content={`https://gdsc23-cert.web.app/c/${value.id}`}
+                    content={`https://gdsc-certificates.web.app/c/${value.id}`}
+                    key="og:url"
                 />
                 <meta
                     property="og:title"
                     content={`${value.name} - GDSC Certificate`}
+                    key="og:title"
                 />
                 <meta
                     property="og:description"
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
+                    key="og:description"
                 />
-                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:card" content="summary_large_image" key="twitter:card" />
                 <meta
                     property="twitter:url"
-                    content={`https://gdsc23-cert.web.app/c/${value.id}`}
+                    content={`https://gdsc-certificates.web.app/c/${value.id}`}
+                    key="twitter:url"
                 />
                 <meta
                     property="twitter:title"
                     content={`${value.name} - GDSC Certificate`}
+                    key="twitter:title"
                 />
                 <meta
                     property="twitter:description"
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
+                    key="twitter:description"
                 />
+                <link rel="canonical" href="https://gdsc-certificates.web.app/c" key="canonical" />
             </Head>
 
             {(id && value) ? <CertificateViewer params={{ id, ...value }}></CertificateViewer> : <>Loading...</>}

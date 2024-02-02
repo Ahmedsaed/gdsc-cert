@@ -14,7 +14,7 @@ export default function Create({ user }) {
         if (prefix) {
             setCertCode(generateRandomCertID(prefix));
         } else {
-            router.push(`/login?redirect=${router.asPath}`);
+            router.replace(`/login?redirect=${router.asPath}`);
         }
     }, [prefix, router]);
 

@@ -50,13 +50,51 @@ function MyApp({ Component, pageProps }) {
                     color="#845c5c"
                 />
                 <meta
+                    name="title"
+                    content='Certificate Generator - Google Developers Student Clubs'
+                    key="title"
+                />
+                <meta
                     name="description"
-                    content="Google Developers Student Clubs Certificates app"
+                    content="Certificate management web app. Create, Verify and Share Certificates."
+                    key="descripttion"
+                />
+                <meta property="og:type" content="website" key="og:type" />
+                <meta
+                    property="og:url"
+                    content="https://gdsc-certificates.web.app/"
+                    key="og:url"
+                />
+                <meta
+                    property="og:title"
+                    content="Certificate Generator - Google Developers Student Clubs"
+                    key="og:title"
+                />
+                <meta
+                    property="og:description"
+                    content="Certificate management web app. Create, Verify and Share Certificates."
+                    key="og:description"
+                />
+                <meta property="twitter:card" content="summary_large_image" key="twitter:card" />
+                <meta
+                    property="twitter:url"
+                    content="https://gdsc-certificates.web.app/"
+                    key="twitter:url"
+                />
+                <meta
+                    property="twitter:title"
+                    content="Certificate Generator - Google Developers Student Clubs"
+                    key="twitter:title"
+                />
+                <meta
+                    property="twitter:description"
+                    content="Certificate management web app. Create, Verify and Share Certificates."
+                    key="twitter:description"
                 />
                 <meta name="msapplication-TileColor" content="#ffffff" />
-                <meta name="theme-color" content="#ffffff" />
+                <meta name="theme-color" content="#313131" />
+                <meta name="google-site-verification" content="e9K5dtnY1TbK5tWbc-cwrDoJnStqGowr6afQ5cmD4Wc" />
             </Head>
-
             <div className='container'>
                 <Logout />
                 <Component {...pageProps} />
