@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
+import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import Head from "next/head";
-import styles from "../styles/Certificate.module.css"
+import styles from "../styles/Certificate.module.css";
 
 const saveSvgAsPng = require("save-svg-as-png");
 
-export default function Cert({params}) {
+export default function Cert({ params }) {
     const [width, setWidth] = useState(null);
 
     useEffect(() => {
@@ -39,20 +40,24 @@ export default function Cert({params}) {
     }
 
     return width ? (
-        <div
-            className={styles['cert-viewer']}
-            style={{ width: width * 0.9 }}
-        >
+        <div className={styles["cert-viewer"]} style={{ width: width * 0.9 }}>
             <Head>
                 <meta name="color-scheme" content="normal" />
             </Head>
-            <CertificateTemplate1
-                {...params}
-                style={{ width: width * 0.9 }}
-            />
+            {params["certTemp"] === "GDSC" ? (
+                <CertificateTemplate1
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            ) : (
+                <CertificateTemplate2
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            )}
             <div>
                 <button
-                    className={styles['download-btn']}
+                    className={styles["download-btn"]}
                     onClick={handleDownloadBtn}
                 >
                     Download
