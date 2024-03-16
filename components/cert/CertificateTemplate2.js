@@ -31,6 +31,9 @@ function SvgComponent({
                 }}
                 {...props}
             >
+                <style>
+                    {`@import url('https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500;600;700&display=swap');`}
+                </style>
                 <defs>
                     <style>
                         {
@@ -54,9 +57,9 @@ function SvgComponent({
                     x="50%"
                     y="53%"
                     text-anchor="middle"
-                    fill="#4285f4"
-                    fontWeight="500"
-                    fontFamily="Roboto"
+                    fill="#2480ef"
+                    fontWeight="800"
+                    fontFamily="Karma"
                     fontSize="107px"
                     className="text__cls"
                 >
