@@ -49,7 +49,7 @@ function SvgComponent({
                             width={2000}
                             height={1414}
                             preserveAspectRatio="none"
-                            xlinkHref="/iwd_blank_certificate.png"
+                            xlinkHref="/certificate-templates/iwd_blank_certificate.png"
                         />
                     </g>
                 </g>

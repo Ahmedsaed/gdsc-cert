@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
+import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import Head from "next/head";
 import styles from "../styles/Certificate.module.css";
 
@@ -32,7 +33,7 @@ export default function Cert({ params }) {
             document.getElementById("certificate"),
             "certificate.png",
             {
-                scale: 2,
+                scale: 1,
                 encoderOptions: 1,
                 backgroundColor: "white",
                 fonts: [
@@ -64,8 +65,18 @@ export default function Cert({ params }) {
                     {...params}
                     style={{ width: width * 0.9 }}
                 />
-            ) : (
+            ) : params["certTemp"] === "IWD" ? (
                 <CertificateTemplate2
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            ) : params["certTemp"] === "Solution Challenge" ? (
+                <CertificateTemplate3
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            ) : (
+                <CertificateTemplate1
                     {...params}
                     style={{ width: width * 0.9 }}
                 />

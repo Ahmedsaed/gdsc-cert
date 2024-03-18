@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
+import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import styles from "../styles/Create.module.css";
 
 const year = "2023 - 2024";
@@ -25,10 +26,10 @@ export default function Create({ user }) {
         "is hereby awarded this Certificate of Appreciation for successfully"
     );
     const [line2, setLine2] = useState(
-        "serving as a Google Developer Student Club Core Team Member at"
+        "serving as a Google Developer Student Club Core Team"
     );
     const [line3, setLine3] = useState(
-        `GDSC MUST for the ${year} academic year.`
+        `Member at GDSC MUST for the ${year} academic year.`
     );
     const [signature, setSignature] = useState("Ahmed Saed");
     const [leadUniversity, setLeadUniversity] = useState(
@@ -143,6 +144,9 @@ export default function Create({ user }) {
                     >
                         <option value="GDSC">GDSC</option>
                         <option value="IWD">IWD</option>
+                        <option value="Solution Challenge">
+                            Solution Challenge
+                        </option>
                     </select>
                 </div>
 
@@ -169,7 +173,7 @@ export default function Create({ user }) {
                                 disabled={disabled}
                                 handleCreateBtn={handleCreateBtn}
                             />
-                        ) : (
+                        ) : certTemp === "IWD" ? (
                             <CertTemp2Inputs
                                 setDate={setDate}
                                 date={date}
@@ -178,6 +182,25 @@ export default function Create({ user }) {
                                 disabled={disabled}
                                 handleCreateBtn={handleCreateBtn}
                             />
+                        ) : certTemp === "Solution Challenge" ? (
+                            <CertTemp3Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : (
+                            <p>Invalid certificate template</p>
                         )}
                     </>
                 ) : (
@@ -229,13 +252,28 @@ export default function Create({ user }) {
                             name={names.split(/\r?\n/)[currentCert - 1]}
                             style={{ width }}
                         />
-                    ) : (
+                    ) : certTemp === "IWD" ? (
                         <CertificateTemplate2
                             id={certCode}
                             date={date}
                             name={names.split(/\r?\n/)[currentCert - 1]}
                             style={{ width }}
                         />
+                    ) : certTemp === "Solution Challenge" ? (
+                        <CertificateTemplate3
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                            style={{ width }}
+                        />
+                    ) : (
+                        <p>Invalid certificate template</p>
                     )}
                     <div className={styles["cert-view-controls"]}>
                         <button
@@ -386,6 +424,97 @@ function CertTemp2Inputs({
 }) {
     return (
         <>
+            <input
+                onChange={(e) => {
+                    setDate(e.target.value);
+                }}
+                value={date}
+                className={styles.input}
+                placeholder={new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                })}
+            />
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                className={styles.textBox}
+                placeholder={
+                    "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
+            <div className={styles["create-menu-btns"]}>
+                <button disabled={disabled} onClick={handleCreateBtn}>
+                    Create
+                </button>
+            </div>
+        </>
+    );
+}
+
+function CertTemp3Inputs({
+    setTitle,
+    title,
+    setLine1,
+    line1,
+    setSignature,
+    signature,
+    setLeadUniversity,
+    leadUniversity,
+    setDate,
+    date,
+    setNames,
+    names,
+    disabled,
+    handleCreateBtn,
+}) {
+    return (
+        <>
+            <input
+                onChange={(e) => {
+                    setTitle(e.target.value);
+                }}
+                value={title}
+                className={styles.input}
+                placeholder={`Title`}
+            />
+            <textarea
+                onChange={(e) => {
+                    setLine1(e.target.value);
+                }}
+                value={line1}
+                className={styles.textBox}
+                placeholder="Line 1"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
+                    setSignature(e.target.value);
+                }}
+                value={signature}
+                className={styles.input}
+                placeholder="Signature"
+            />
+            <textarea
+                onChange={(e) => {
+                    setLeadUniversity(e.target.value);
+                }}
+                value={leadUniversity}
+                className={styles.textBox}
+                placeholder="Lead Name, University"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
             <input
                 onChange={(e) => {
                     setDate(e.target.value);
