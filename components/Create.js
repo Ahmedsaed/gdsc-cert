@@ -114,6 +114,7 @@ export default function Create({ user }) {
                         signature,
                         date,
                         leadUniversity,
+                        issueDate,
                         created:
                             firebase.firestore.FieldValue.serverTimestamp(),
                         certTemp,
