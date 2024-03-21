@@ -54,7 +54,7 @@ function SvgComponent({
                             width={2048}
                             height={1152}
                             preserveAspectRatio="none"
-                            xlinkHref="/blank_certificate.png"
+                            xlinkHref="/certificate-templates/blank_certificate.png"
                         />
                     </g>
                     <path
@@ -213,7 +213,10 @@ function SvgComponent({
                         stroke="#595959"
                         strokeLinejoin="round"
                         strokeLinecap="butt"
-                        d={`M104.68 ${446.986 - (14 * leadUniversity.split('\n').length / 2)}h338.488`}
+                        d={`M104.68 ${
+                            446.986 -
+                            (14 * leadUniversity.split("\n").length) / 2
+                        }h338.488`}
                     />
                     <path
                         fill="none"
@@ -315,7 +318,7 @@ function SvgComponent({
                 )}
                 <text
                     x="106"
-                    y={435 - (14 * leadUniversity.split('\n').length / 2)}
+                    y={435 - (14 * leadUniversity.split("\n").length) / 2}
                     fill="#da3936"
                     fontFamily={`'Dancing Script'`}
                     fontSize="44px"
@@ -336,7 +339,7 @@ function SvgComponent({
                             key={index}
                             x="106"
                             y={450 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
-                            dominantBaseline="middle"  // Center the text vertically
+                            dominantBaseline="middle" // Center the text vertically
                             // textAnchor="middle"  // Center the text horizontally
                         >
                             {str}

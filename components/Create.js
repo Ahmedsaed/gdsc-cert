@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
+import CertificateTemplate2 from "./cert/CertificateTemplate2";
+import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import styles from "../styles/Create.module.css";
 
 const year = "2023 - 2024";
@@ -18,15 +20,16 @@ export default function Create({ user }) {
         }
     }, [prefix, router]);
 
+    const [certTemp, setCertTemp] = useState("GDSC");
     const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
     const [line1, setLine1] = useState(
         "is hereby awarded this Certificate of Appreciation for successfully"
     );
     const [line2, setLine2] = useState(
-        "serving as a Google Developer Student Club Core Team Member at"
+        "serving as a Google Developer Student Club Core Team"
     );
     const [line3, setLine3] = useState(
-        `GDSC MUST for the ${year} academic year.`
+        `Member at GDSC MUST for the ${year} academic year.`
     );
     const [signature, setSignature] = useState("Ahmed Saed");
     const [leadUniversity, setLeadUniversity] = useState(
@@ -105,6 +108,7 @@ export default function Create({ user }) {
                         leadUniversity,
                         created:
                             firebase.firestore.FieldValue.serverTimestamp(),
+                        certTemp,
                     });
                     return {
                         name,
@@ -126,92 +130,78 @@ export default function Create({ user }) {
         <>
             <div className={styles["create-menu"]}>
                 <h2>Create new certificates</h2>
+                {/* Certificate Template Switcher dropdown */}
+                <div className={styles["cert-template-switcher"]}>
+                    <label htmlFor="cert-template">Certificate Template</label>
+                    <select
+                        name="cert-template"
+                        id="cert-template"
+                        onChange={(e) => {
+                            setCertTemp(e.target.value);
+                        }}
+                        value={certTemp}
+                        className={styles.input}
+                    >
+                        <option value="GDSC">GDSC</option>
+                        <option value="IWD">IWD</option>
+                        <option value="Solution Challenge">
+                            Solution Challenge
+                        </option>
+                    </select>
+                </div>
+
                 {!result ? (
                     <>
-                        <input
-                            onChange={(e) => {
-                                setTitle(e.target.value);
-                            }}
-                            value={title}
-                            className={styles.input}
-                            placeholder={`Title`}
-                        />
-                        <input
-                            onChange={(e) => {
-                                setLine1(e.target.value);
-                            }}
-                            value={line1}
-                            className={styles.input}
-                            placeholder="Line 1"
-                        />
-                        <input
-                            onChange={(e) => {
-                                setLine2(e.target.value);
-                            }}
-                            value={line2}
-                            className={styles.input}
-                            placeholder="Line 2"
-                        />
-                        <input
-                            onChange={(e) => {
-                                setLine3(e.target.value);
-                            }}
-                            value={line3}
-                            className={styles.input}
-                            placeholder={`Line 3`}
-                        />
-                        <input
-                            onChange={(e) => {
-                                setSignature(e.target.value);
-                            }}
-                            value={signature}
-                            className={styles.input}
-                            placeholder="Signature"
-                        />
-                        <textarea
-                            onChange={(e) => {
-                                setLeadUniversity(e.target.value);
-                            }}
-                            value={leadUniversity}
-                            className={styles.textBox}
-                            placeholder="Lead Name, University"
-                            style={{ minHeight: "100px" }}
-                        />
-                        <input
-                            onChange={(e) => {
-                                setDate(e.target.value);
-                            }}
-                            value={date}
-                            className={styles.input}
-                            placeholder={new Date().toLocaleDateString(
-                                "en-US",
-                                {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                }
-                            )}
-                        />
-                        <textarea
-                            onChange={(e) => {
-                                setNames(e.target.value);
-                            }}
-                            value={names}
-                            spellCheck="false"
-                            className={styles.textBox}
-                            placeholder={
-                                "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
-                            }
-                            style={{ minHeight: "200px" }}
-                        />
-                        <div className={styles["create-menu-btns"]}>
-                            <button
+                        {certTemp === "GDSC" ? (
+                            <CertTemp1Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setLine2={setLine2}
+                                line2={line2}
+                                setLine3={setLine3}
+                                line3={line3}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
                                 disabled={disabled}
-                                onClick={handleCreateBtn}
-                            >
-                                Create
-                            </button>
-                        </div>
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : certTemp === "IWD" ? (
+                            <CertTemp2Inputs
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : certTemp === "Solution Challenge" ? (
+                            <CertTemp3Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : (
+                            <p>Invalid certificate template</p>
+                        )}
                     </>
                 ) : (
                     <div className={styles["share-menu"]}>
@@ -249,18 +239,42 @@ export default function Create({ user }) {
                 {CreateCertMenu}
                 <div className={styles["cert-view"]}>
                     <h2>Preview</h2>
-                    <CertificateTemplate1
-                        id={certCode}
-                        title={title}
-                        line1={line1}
-                        line2={line2}
-                        line3={line3}
-                        signature={signature}
-                        leadUniversity={leadUniversity}
-                        date={date}
-                        name={names.split(/\r?\n/)[currentCert - 1]}
-                        style={{ width }}
-                    />
+                    {certTemp === "GDSC" ? (
+                        <CertificateTemplate1
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                            style={{ width }}
+                        />
+                    ) : certTemp === "IWD" ? (
+                        <CertificateTemplate2
+                            id={certCode}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                            style={{ width }}
+                        />
+                    ) : certTemp === "Solution Challenge" ? (
+                        <CertificateTemplate3
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                            style={{ width }}
+                        />
+                    ) : (
+                        <p>Invalid certificate template</p>
+                    )}
                     <div className={styles["cert-view-controls"]}>
                         <button
                             onClick={() => {
@@ -289,5 +303,249 @@ export default function Create({ user }) {
                 </div>
             </div>
         )
+    );
+}
+
+function CertTemp1Inputs({
+    setTitle,
+    title,
+    setLine1,
+    line1,
+    setLine2,
+    line2,
+    setLine3,
+    line3,
+    setSignature,
+    signature,
+    setLeadUniversity,
+    leadUniversity,
+    setDate,
+    date,
+    setNames,
+    names,
+    disabled,
+    handleCreateBtn,
+}) {
+    return (
+        <>
+            <input
+                onChange={(e) => {
+                    setTitle(e.target.value);
+                }}
+                value={title}
+                className={styles.input}
+                placeholder={`Title`}
+            />
+            <input
+                onChange={(e) => {
+                    setLine1(e.target.value);
+                }}
+                value={line1}
+                className={styles.input}
+                placeholder="Line 1"
+            />
+            <input
+                onChange={(e) => {
+                    setLine2(e.target.value);
+                }}
+                value={line2}
+                className={styles.input}
+                placeholder="Line 2"
+            />
+            <input
+                onChange={(e) => {
+                    setLine3(e.target.value);
+                }}
+                value={line3}
+                className={styles.input}
+                placeholder={`Line 3`}
+            />
+            <input
+                onChange={(e) => {
+                    setSignature(e.target.value);
+                }}
+                value={signature}
+                className={styles.input}
+                placeholder="Signature"
+            />
+            <textarea
+                onChange={(e) => {
+                    setLeadUniversity(e.target.value);
+                }}
+                value={leadUniversity}
+                className={styles.textBox}
+                placeholder="Lead Name, University"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
+                    setDate(e.target.value);
+                }}
+                value={date}
+                className={styles.input}
+                placeholder={new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                })}
+            />
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                className={styles.textBox}
+                placeholder={
+                    "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
+            <div className={styles["create-menu-btns"]}>
+                <button disabled={disabled} onClick={handleCreateBtn}>
+                    Create
+                </button>
+            </div>
+        </>
+    );
+}
+
+function CertTemp2Inputs({
+    setDate,
+    date,
+    setNames,
+    names,
+    disabled,
+    handleCreateBtn,
+}) {
+    return (
+        <>
+            <input
+                onChange={(e) => {
+                    setDate(e.target.value);
+                }}
+                value={date}
+                className={styles.input}
+                placeholder={new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                })}
+            />
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                className={styles.textBox}
+                placeholder={
+                    "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
+            <div className={styles["create-menu-btns"]}>
+                <button disabled={disabled} onClick={handleCreateBtn}>
+                    Create
+                </button>
+            </div>
+        </>
+    );
+}
+
+function CertTemp3Inputs({
+    setTitle,
+    title,
+    setLine1,
+    line1,
+    setSignature,
+    signature,
+    setLeadUniversity,
+    leadUniversity,
+    setDate,
+    date,
+    setNames,
+    names,
+    disabled,
+    handleCreateBtn,
+}) {
+    return (
+        <>
+            <input
+                onChange={(e) => {
+                    setTitle(e.target.value);
+                }}
+                value={title}
+                className={styles.input}
+                placeholder={`Title`}
+            />
+            <textarea
+                onChange={(e) => {
+                    setLine1(e.target.value);
+                }}
+                value={line1}
+                className={styles.textBox}
+                placeholder="Line 1"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
+                    setSignature(e.target.value);
+                }}
+                value={signature}
+                className={styles.input}
+                placeholder="Signature"
+            />
+            <textarea
+                onChange={(e) => {
+                    setLeadUniversity(e.target.value);
+                }}
+                value={leadUniversity}
+                className={styles.textBox}
+                placeholder="Lead Name, University"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
+                    setDate(e.target.value);
+                }}
+                value={date}
+                className={styles.input}
+                placeholder={new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                })}
+            />
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                className={styles.textBox}
+                placeholder={
+                    "Core Member1\r\nCore Member2\r\nCore Member3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
+            <div className={styles["create-menu-btns"]}>
+                <button disabled={disabled} onClick={handleCreateBtn}>
+                    Create
+                </button>
+            </div>
+        </>
     );
 }

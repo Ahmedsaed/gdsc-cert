@@ -70,7 +70,7 @@ export default function Preview() {
                 <button
                     onClick={() => {
                         navigator.clipboard.writeText(
-                            `${window.location.origin}/cert/${cert.id}`
+                            `${window.location.origin}/c/${cert.id}`
                         );
                     }}
                 >
