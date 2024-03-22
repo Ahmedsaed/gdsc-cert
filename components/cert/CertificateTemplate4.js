@@ -368,7 +368,7 @@ function CertificateTemplate4({
             </svg>
             <text
                 x="50%"
-                y="35%"
+                y="42%"
                 text-anchor="middle"
                 fill="#4285f4"
                 font-weight="600"
@@ -381,10 +381,10 @@ function CertificateTemplate4({
                 successful
             </text>
             <text x="50%" y="54%" text-anchor="middle" font-size="22">
-                completion of all tasks given during {title}
+                completion of all tasks given during <tspan font-weight="600" >{title}</tspan>
             </text>
             <text x="50%" y="58%" text-anchor="middle" font-size="22">
-                on {date}
+                on <tspan font-weight="600">{date}</tspan>
             </text>
             {/* <!-- SADAIN SIGNATURE --> */}
             <svg
@@ -1120,7 +1120,7 @@ function CertificateTemplate4({
                 x="70%"
                 y="670"
                 fill="#4285f4"
-                fontWeight="500"
+                // fontWeight="500"
                 fontFamily="Roboto"
                 fontSize="16px"
                 className="text__cls"
