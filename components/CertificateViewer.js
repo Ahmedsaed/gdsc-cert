@@ -39,13 +39,15 @@ export default function Cert({ params }) {
     }
 
     function handleDownloadPDFBtn() {
-        const doc = new jsPDF({
-            orientation: "landscape",
-        });
-
         const svg = document.getElementById("certificate");
         const width = parseInt(svg.getAttribute("viewBox").split(" ")[2]);
         const height = parseInt(svg.getAttribute("viewBox").split(" ")[3]);
+
+        const doc = new jsPDF({
+            orientation: "landscape",
+            unit: "px",
+            format: [width, height],
+        });
 
         const Karam = fetch(
             "https://fonts.gstatic.com/s/karma/v16/va9F4kzAzMZRGLjDY_Z4sK0.woff2"
@@ -57,6 +59,8 @@ export default function Cert({ params }) {
                 doc.svg(svg, {
                     x: 0,
                     y: 0,
+                    width: width,
+                    height: height,
                     loadExternalStyleSheets: true,
                 }).then(() => {
                     doc.save("certificate.pdf");
