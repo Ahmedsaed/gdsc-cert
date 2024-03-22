@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { jsPDF } from "jspdf";
+import "svg2pdf.js";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
@@ -9,27 +11,7 @@ import styles from "../styles/Certificate.module.css";
 const saveSvgAsPng = require("save-svg-as-png");
 
 export default function Cert({ params }) {
-    const [width, setWidth] = useState(null);
-
-    useEffect(() => {
-        function handleResize() {
-            if (typeof window !== "undefined") {
-                setWidth(window.innerWidth * 0.8);
-            }
-        }
-
-        handleResize();
-
-        // Attach the event listener to the window object
-        window.addEventListener("resize", handleResize);
-
-        // Remove the event listener when the component unmounts
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
-    function handleDownloadBtn() {
+    function handleDownloadPNGBtn() {
         saveSvgAsPng.saveSvgAsPng(
             document.getElementById("certificate"),
             "certificate.png",
@@ -56,52 +38,62 @@ export default function Cert({ params }) {
         );
     }
 
-    return width ? (
-        <div className={styles["cert-viewer"]} style={{ width: width * 0.9 }}>
+    function handleDownloadPDFBtn() {
+        const doc = new jsPDF({
+            orientation: "landscape",
+        });
+
+        const svg = document.getElementById("certificate");
+        const width = parseInt(svg.getAttribute("viewBox").split(" ")[2]);
+        const height = parseInt(svg.getAttribute("viewBox").split(" ")[3]);
+
+        const Karam = fetch(
+            "https://fonts.gstatic.com/s/karma/v16/va9F4kzAzMZRGLjDY_Z4sK0.woff2"
+        )
+            .then((response) => response.blob())
+            .then((blob) => {
+                doc.addFileToVFS("Karma.woff2", blob);
+                doc.addFont("Karma.woff2", "Karam", "normal");
+                doc.svg(svg, {
+                    x: 0,
+                    y: 0,
+                    loadExternalStyleSheets: true,
+                }).then(() => {
+                    doc.save("certificate.pdf");
+                });
+            });
+    }
+
+    return (
+        <div className={styles["cert-viewer"]}>
             <Head>
                 <meta name="color-scheme" content="normal" />
             </Head>
             {params["certTemp"] === "GDSC" ? (
-                <CertificateTemplate1
-                    {...params}
-                    style={{ width: width * 0.9 }}
-                />
+                <CertificateTemplate1 {...params} />
             ) : params["certTemp"] === "IWD" ? (
-                <CertificateTemplate2
-                    {...params}
-                    style={{ width: width * 0.9 }}
-                />
+                <CertificateTemplate2 {...params} />
             ) : params["certTemp"] === "Solution Challenge" ? (
-                <CertificateTemplate3
-                    {...params}
-                    style={{ width: width * 0.9 }}
-                />
+                <CertificateTemplate3 {...params} />
             ) : params["certTemp"] === "Web Development Bootcamp" ? (
-                <CertificateTemplate4
-                    {...params}
-                    style={{ width: width * 0.9 }}
-                />
+                <CertificateTemplate4 {...params} />
             ) : (
-                <CertificateTemplate1
-                    {...params}
-                    style={{ width: width * 0.9 }}
-                />
+                <CertificateTemplate1 {...params} />
             )}
-            <div>
+            <div className={styles["btn-group"]}>
                 <button
                     className={styles["download-btn"]}
-                    onClick={handleDownloadBtn}
+                    onClick={handleDownloadPNGBtn}
                 >
-                    Download
+                    Download PNG
                 </button>
+                {/* <button
+                    className={styles["download-btn"]}
+                    onClick={handleDownloadPDFBtn}
+                >
+                    Download PDF
+                </button> */}
             </div>
         </div>
-    ) : (
-        <>
-            <h1>
-                Please use a browser that supports SVGs, like Chrome, Firefox,
-                or Safari.
-            </h1>
-        </>
     );
 }

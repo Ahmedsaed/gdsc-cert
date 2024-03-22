@@ -14,12 +14,14 @@
   "dependencies": {
     "firebase": "^8.10.0",
     "install-custom-font": "^1.1.1",
+    "jspdf": "^2.5.1",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^3.0.4",
     "save-svg-as-png": "^1.4.17",
-    "sharp": "^0.33.1"
+    "sharp": "^0.33.1",
+    "svg2pdf.js": "^2.2.3"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

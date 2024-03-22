@@ -1,18 +1,32 @@
 .cert-viewer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+.cert-viewer svg {
+    width: min(800px, 100%);
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .download-btn {
-	background-color: #0f9d58;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	font-size: 1.2rem;
-	cursor: pointer;
-	margin-top: 20px;
+    background-color: #0f9d58;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
 }

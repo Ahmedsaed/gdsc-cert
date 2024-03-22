@@ -22,12 +22,15 @@ export default function C(props) {
             firebase
                 .firestore()
                 .collection("cert")
-                .doc(id.split("-").length > 1 ? id.split("-")[0] :
-                    (id.startsWith("omarffhj") ?
-                        "omarffhj" :
-                        (id.startsWith('asd') ? "asd" : "")
-                    )
-                )                                               // This is a hard coded fix for the old certificates. (Original: id.split("-")[0])
+                .doc(
+                    id.split("-").length > 1
+                        ? id.split("-")[0]
+                        : id.startsWith("omarffhj")
+                        ? "omarffhj"
+                        : id.startsWith("asd")
+                        ? "asd"
+                        : ""
+                ) // This is a hard coded fix for the old certificates. (Original: id.split("-")[0])
                 .collection("core21")
                 .doc(id)
                 .get()
@@ -36,7 +39,6 @@ export default function C(props) {
                 });
         }
     }, [id]);
-
 
     return value ? (
         <>
@@ -73,7 +75,11 @@ export default function C(props) {
                     content={`https://gdsc-certificates.vercel.app/api/certThumbnail?id=${id}`}
                     key="og:image"
                 />
-                <meta property="twitter:card" content="summary_large_image" key="twitter:card" />
+                <meta
+                    property="twitter:card"
+                    content="summary_large_image"
+                    key="twitter:card"
+                />
                 <meta
                     property="twitter:url"
                     content={`https://gdsc-certificates.web.app/c/${id}`}
@@ -94,12 +100,22 @@ export default function C(props) {
                     content={`https://gdsc-certificates.vercel.app/api/certThumbnail?id=${id}`}
                     key="twitter:image"
                 />
-                <link rel="canonical" href="https://gdsc-certificates.web.app/c" key="canonical" />
+                <link
+                    rel="canonical"
+                    href="https://gdsc-certificates.web.app/c"
+                    key="canonical"
+                />
             </Head>
 
-            {(id && value) ? <CertificateViewer params={{ id, ...value }}></CertificateViewer> : <>Loading...</>}
+            {id && value ? (
+                <CertificateViewer
+                    params={{ id, ...value }}
+                ></CertificateViewer>
+            ) : (
+                <>Loading...</>
+            )}
         </>
     ) : (
-      <div >Not Found</div>
+        <div>Not Found</div>
     );
 }
