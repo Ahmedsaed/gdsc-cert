@@ -76,20 +76,17 @@ export default function Cert({ params }) {
                     {...params}
                     style={{ width: width * 0.9 }}
                 />
-            ) :
-                params["certTemp"] === "Web Development Bootcamp" ? (
-                    <CertificateTemplate4
-                        {...params}
-                        style={{ width: width * 0.9 }}
-                    />
-                ) :
-                    (
-
-                        <CertificateTemplate1
-                            {...params}
-                            style={{ width: width * 0.9 }}
-                        />
-                    )}
+            ) : params["certTemp"] === "Web Development Bootcamp" ? (
+                <CertificateTemplate4
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            ) : (
+                <CertificateTemplate1
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            )}
             <div>
                 <button
                     className={styles["download-btn"]}
