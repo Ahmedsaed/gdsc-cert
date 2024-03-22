@@ -368,7 +368,7 @@ function CertificateTemplate4({
             </svg>
             <text
                 x="50%"
-                y="45%"
+                y="35%"
                 text-anchor="middle"
                 fill="#4285f4"
                 font-weight="600"
