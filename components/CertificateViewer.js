@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
+import CertificateTemplate4 from "./cert/CertificateTemplate4";
 import Head from "next/head";
 import styles from "../styles/Certificate.module.css";
 
@@ -72,6 +73,11 @@ export default function Cert({ params }) {
                 />
             ) : params["certTemp"] === "Solution Challenge" ? (
                 <CertificateTemplate3
+                    {...params}
+                    style={{ width: width * 0.9 }}
+                />
+            ) : params["certTemp"] === "Web Development Bootcamp" ? (
+                <CertificateTemplate4
                     {...params}
                     style={{ width: width * 0.9 }}
                 />

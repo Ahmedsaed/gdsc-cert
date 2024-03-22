@@ -55,7 +55,7 @@ export default function C(props) {
                 <meta property="og:type" content="article" key="og:type" />
                 <meta
                     property="og:url"
-                    content={`https://gdsc-certificates.web.app/c/${value.id}`}
+                    content={`https://gdsc-certificates.web.app/c/${id}`}
                     key="og:url"
                 />
                 <meta
@@ -68,10 +68,15 @@ export default function C(props) {
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
                     key="og:description"
                 />
+                <meta
+                    property="og:image"
+                    content={`https://gdsc-certificates.vercel.app/api/certThumbnail?id=${id}`}
+                    key="og:image"
+                />
                 <meta property="twitter:card" content="summary_large_image" key="twitter:card" />
                 <meta
                     property="twitter:url"
-                    content={`https://gdsc-certificates.web.app/c/${value.id}`}
+                    content={`https://gdsc-certificates.web.app/c/${id}`}
                     key="twitter:url"
                 />
                 <meta
@@ -83,6 +88,11 @@ export default function C(props) {
                     property="twitter:description"
                     content={`${value.name} - Google Develelopers Student Clubs Certificate`}
                     key="twitter:description"
+                />
+                <meta
+                    property="twitter:image"
+                    content={`https://gdsc-certificates.vercel.app/api/certThumbnail?id=${id}`}
+                    key="twitter:image"
                 />
                 <link rel="canonical" href="https://gdsc-certificates.web.app/c" key="canonical" />
             </Head>
