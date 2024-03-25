@@ -105,7 +105,7 @@ function SvgComponent({
                         <tspan
                             key={index}
                             x="155"
-                            y={500 + index * 36} // Center vertically based on the number of lines
+                            y={500 + index * 40} // Center vertically based on the number of lines
                         >
                             {str}
                         </tspan>
