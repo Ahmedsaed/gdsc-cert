@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvg": "^4.0.1",
     "firebase": "^8.10.0",
     "install-custom-font": "^1.1.1",
     "jspdf": "^2.5.1",
