@@ -23,15 +23,211 @@ function CertificateTemplate4({
             fontFamily={`'Open Sans'`}
             viewBox="0 0 1000 700"
         >
+
             <rect width="100%" height="100%" fill="white" />
+            <svg id="Layer_2" data-name="Layer 2" x="13" y="-25%" width="97.3%" height="1050" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2698.35 1848.17">
+                <defs>
+                    <style>
+                        {
+                            `
+      .bgCls-1 {
+          stroke-width: 0px;
+      }
+
+      .bgCls-1, .bgCls-2, .bgCls-3 {
+        fill: none;
+      }
+
+      .bgCls-4 {
+        clip-path: url(#clippath);
+      }
+
+      .bgCls-2 {
+        stroke: #0085f8;
+        stroke-width: 6px;
+      }
+
+      .bgCls-2, .bgCls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .bgCls-3 {
+        stroke: #e6e7e8;
+      }
+      `}
+                    </style>
+                    <clipPath id="clippath">
+                        <rect class="bgCls-1" x="4.64" y="3" width="2690.71" height="100%" />
+                    </clipPath>
+                </defs>
+                <g id="Layer_1-2" data-name="Layer 1">
+                    <g class="bgCls-4">
+                        <g>
+                            <circle class="bgCls-3" cx="1324.58" cy="897.53" r="7.64" />
+                            <circle class="bgCls-3" cx="1324.74" cy="897.7" r="19.01" />
+                            <circle class="bgCls-3" cx="1324.9" cy="897.86" r="30.38" />
+                            <circle class="bgCls-3" cx="1325.07" cy="898.02" r="41.75" />
+                            <circle class="bgCls-3" cx="1325.23" cy="898.19" r="53.12" />
+                            <circle class="bgCls-3" cx="1325.39" cy="898.35" r="64.49" />
+                            <circle class="bgCls-3" cx="1325.56" cy="898.51" r="75.86" />
+                            <circle class="bgCls-3" cx="1325.72" cy="898.67" r="87.23" />
+                            <circle class="bgCls-3" cx="1325.88" cy="898.84" r="98.6" />
+                            <circle class="bgCls-3" cx="1326.04" cy="899" r="109.97" />
+                            <circle class="bgCls-3" cx="1326.21" cy="899.16" r="121.34" />
+                            <circle class="bgCls-3" cx="1326.37" cy="899.33" r="132.71" />
+                            <circle class="bgCls-3" cx="1326.53" cy="899.49" r="144.08" />
+                            <circle class="bgCls-3" cx="1326.7" cy="899.65" r="155.45" />
+                            <circle class="bgCls-3" cx="1326.86" cy="899.81" r="166.82" />
+                            <circle class="bgCls-3" cx="1327.02" cy="899.98" r="178.19" />
+                            <circle class="bgCls-3" cx="1327.18" cy="900.14" r="189.55" />
+                            <circle class="bgCls-3" cx="1327.35" cy="900.3" r="200.92" />
+                            <circle class="bgCls-3" cx="1327.51" cy="900.47" r="212.29" />
+                            <circle class="bgCls-3" cx="1327.67" cy="900.63" r="223.66" />
+                            <circle class="bgCls-3" cx="1327.84" cy="900.79" r="235.03" />
+                            <circle class="bgCls-3" cx="1328" cy="900.95" r="246.4" />
+                            <circle class="bgCls-3" cx="1328.16" cy="901.12" r="257.77" />
+                            <circle class="bgCls-3" cx="1328.32" cy="901.28" r="269.14" />
+                            <circle class="bgCls-3" cx="1328.49" cy="901.44" r="280.51" />
+                            <circle class="bgCls-3" cx="1328.65" cy="901.61" r="291.88" />
+                            <circle class="bgCls-3" cx="1328.81" cy="901.77" r="303.25" />
+                            <circle class="bgCls-3" cx="1328.98" cy="901.93" r="314.62" />
+                            <circle class="bgCls-3" cx="1329.14" cy="902.09" r="325.99" />
+                            <circle class="bgCls-3" cx="1329.3" cy="902.26" r="337.36" />
+                            <circle class="bgCls-3" cx="1329.46" cy="902.42" r="348.73" />
+                            <circle class="bgCls-3" cx="1329.63" cy="902.58" r="360.1" />
+                            <circle class="bgCls-3" cx="1329.79" cy="902.75" r="371.47" />
+                            <circle class="bgCls-3" cx="1329.95" cy="902.91" r="382.84" />
+                            <circle class="bgCls-3" cx="1330.12" cy="903.07" r="394.21" />
+                            <circle class="bgCls-3" cx="1330.28" cy="903.23" r="405.58" />
+                            <circle class="bgCls-3" cx="1330.44" cy="903.4" r="416.95" />
+                            <circle class="bgCls-3" cx="1330.61" cy="903.56" r="428.32" />
+                            <circle class="bgCls-3" cx="1330.77" cy="903.72" r="439.69" />
+                            <circle class="bgCls-3" cx="1330.93" cy="903.89" r="451.06" />
+                            <circle class="bgCls-3" cx="1331.09" cy="904.05" r="462.43" />
+                            <circle class="bgCls-3" cx="1331.26" cy="904.21" r="473.8" />
+                            <circle class="bgCls-3" cx="1331.42" cy="904.38" r="485.17" />
+                            <circle class="bgCls-3" cx="1331.58" cy="904.54" r="496.54" />
+                            <circle class="bgCls-3" cx="1331.75" cy="904.7" r="507.91" />
+                            <circle class="bgCls-3" cx="1331.91" cy="904.86" r="519.28" />
+                            <circle class="bgCls-3" cx="1332.07" cy="905.03" r="530.65" />
+                            <circle class="bgCls-3" cx="1332.23" cy="905.19" r="542.02" />
+                            <circle class="bgCls-3" cx="1332.4" cy="905.35" r="553.38" />
+                            <circle class="bgCls-3" cx="1332.56" cy="905.52" r="564.75" />
+                            <circle class="bgCls-3" cx="1332.72" cy="905.68" r="576.12" />
+                            <circle class="bgCls-3" cx="1332.89" cy="905.84" r="587.49" />
+                            <circle class="bgCls-3" cx="1333.05" cy="906" r="598.86" />
+                            <circle class="bgCls-3" cx="1333.21" cy="906.17" r="610.23" />
+                            <circle class="bgCls-3" cx="1333.37" cy="906.33" r="621.6" />
+                            <circle class="bgCls-3" cx="1333.54" cy="906.49" r="632.97" />
+                            <circle class="bgCls-3" cx="1333.7" cy="906.66" r="644.34" />
+                            <circle class="bgCls-3" cx="1333.86" cy="906.82" r="655.71" />
+                            <circle class="bgCls-3" cx="1334.03" cy="906.98" r="667.08" />
+                            <circle class="bgCls-3" cx="1334.19" cy="907.14" r="678.45" />
+                            <circle class="bgCls-3" cx="1334.35" cy="907.31" r="689.82" />
+                            <circle class="bgCls-3" cx="1334.51" cy="907.47" r="701.19" />
+                            <circle class="bgCls-3" cx="1334.68" cy="907.63" r="712.56" />
+                            <circle class="bgCls-3" cx="1334.84" cy="907.8" r="723.93" />
+                            <circle class="bgCls-3" cx="1335" cy="907.96" r="735.3" />
+                            <circle class="bgCls-3" cx="1335.17" cy="908.12" r="746.67" />
+                            <circle class="bgCls-3" cx="1335.33" cy="908.28" r="758.04" />
+                            <circle class="bgCls-3" cx="1335.49" cy="908.45" r="769.41" />
+                            <circle class="bgCls-3" cx="1335.65" cy="908.61" r="780.78" />
+                            <circle class="bgCls-3" cx="1335.82" cy="908.77" r="792.15" />
+                            <circle class="bgCls-3" cx="1335.98" cy="908.94" r="803.52" />
+                            <circle class="bgCls-3" cx="1336.14" cy="909.1" r="814.89" />
+                            <circle class="bgCls-3" cx="1336.31" cy="909.26" r="826.26" />
+                            <circle class="bgCls-3" cx="1336.47" cy="909.42" r="837.63" />
+                            <circle class="bgCls-3" cx="1336.63" cy="909.59" r="849" />
+                            <circle class="bgCls-3" cx="1336.79" cy="909.75" r="860.37" />
+                            <circle class="bgCls-3" cx="1336.96" cy="909.91" r="871.74" />
+                            <circle class="bgCls-3" cx="1337.12" cy="910.08" r="883.11" />
+                            <circle class="bgCls-3" cx="1337.28" cy="910.24" r="894.48" />
+                            <circle class="bgCls-3" cx="1337.45" cy="910.4" r="905.85" />
+                            <circle class="bgCls-3" cx="1337.61" cy="910.56" r="917.21" />
+                            <circle class="bgCls-3" cx="1337.77" cy="910.73" r="928.58" />
+                            <circle class="bgCls-3" cx="1337.94" cy="910.89" r="939.95" />
+                            <circle class="bgCls-3" cx="1338.1" cy="911.05" r="951.32" />
+                            <circle class="bgCls-3" cx="1338.26" cy="911.22" r="962.69" />
+                            <circle class="bgCls-3" cx="1338.42" cy="911.38" r="974.06" />
+                            <circle class="bgCls-3" cx="1338.59" cy="911.54" r="985.43" />
+                            <circle class="bgCls-3" cx="1338.75" cy="911.71" r="996.8" />
+                            <circle class="bgCls-3" cx="1338.91" cy="911.87" r="1008.17" />
+                            <circle class="bgCls-3" cx="1339.08" cy="912.03" r="1019.54" />
+                            <circle class="bgCls-3" cx="1339.24" cy="912.19" r="1030.91" />
+                            <circle class="bgCls-3" cx="1339.4" cy="912.36" r="1042.28" />
+                            <circle class="bgCls-3" cx="1339.56" cy="912.52" r="1053.65" />
+                            <circle class="bgCls-3" cx="1339.73" cy="912.68" r="1065.02" />
+                            <circle class="bgCls-3" cx="1339.89" cy="912.85" r="1076.39" />
+                            <circle class="bgCls-3" cx="1340.05" cy="913.01" r="1087.76" />
+                            <circle class="bgCls-3" cx="1340.22" cy="913.17" r="1099.13" />
+                            <circle class="bgCls-3" cx="1340.38" cy="913.33" r="1110.5" />
+                            <circle class="bgCls-3" cx="1340.54" cy="913.5" r="1121.87" />
+                            <circle class="bgCls-3" cx="1340.7" cy="913.66" r="1133.24" />
+                            <circle class="bgCls-3" cx="1340.87" cy="913.82" r="1144.61" />
+                            <circle class="bgCls-3" cx="1341.03" cy="913.99" r="1155.98" />
+                            <circle class="bgCls-3" cx="1341.19" cy="914.15" r="1167.35" />
+                            <circle class="bgCls-3" cx="1341.36" cy="914.31" r="1178.72" />
+                            <circle class="bgCls-3" cx="1341.52" cy="914.47" r="1190.09" />
+                            <circle class="bgCls-3" cx="1341.68" cy="914.64" r="1201.46" />
+                            <circle class="bgCls-3" cx="1341.84" cy="914.8" r="1212.83" />
+                            <circle class="bgCls-3" cx="1342.01" cy="914.96" r="1224.2" />
+                            <circle class="bgCls-3" cx="1342.17" cy="915.13" r="1235.57" />
+                            <circle class="bgCls-3" cx="1342.33" cy="915.29" r="1246.94" />
+                            <circle class="bgCls-3" cx="1342.5" cy="915.45" r="1258.31" />
+                            <circle class="bgCls-3" cx="1342.66" cy="915.61" r="1269.68" />
+                            <circle class="bgCls-3" cx="1342.82" cy="915.78" r="1281.04" />
+                            <circle class="bgCls-3" cx="1342.98" cy="915.94" r="1292.41" />
+                            <circle class="bgCls-3" cx="1343.15" cy="916.1" r="1303.78" />
+                            <circle class="bgCls-3" cx="1343.31" cy="916.27" r="1315.15" />
+                            <circle class="bgCls-3" cx="1343.47" cy="916.43" r="1326.52" />
+                            <circle class="bgCls-3" cx="1343.64" cy="916.59" r="1337.89" />
+                            <circle class="bgCls-3" cx="1343.8" cy="916.75" r="1349.26" />
+                            <circle class="bgCls-3" cx="1343.96" cy="916.92" r="1360.63" />
+                            <circle class="bgCls-3" cx="1344.13" cy="917.08" r="1372" />
+                            <circle class="bgCls-3" cx="1344.29" cy="917.24" r="1383.37" />
+                            <circle class="bgCls-3" cx="1344.45" cy="917.41" r="1394.74" />
+                            <circle class="bgCls-3" cx="1344.61" cy="917.57" r="1406.11" />
+                            <circle class="bgCls-3" cx="1344.78" cy="917.73" r="1417.48" />
+                            <circle class="bgCls-3" cx="1344.94" cy="917.9" r="1428.85" />
+                            <circle class="bgCls-3" cx="1345.1" cy="918.06" r="1440.22" />
+                            <circle class="bgCls-3" cx="1345.27" cy="918.22" r="1451.59" />
+                            <circle class="bgCls-3" cx="1345.43" cy="918.38" r="1462.96" />
+                            <circle class="bgCls-3" cx="1345.59" cy="918.55" r="1474.33" />
+                            <circle class="bgCls-3" cx="1345.75" cy="918.71" r="1485.7" />
+                            <circle class="bgCls-3" cx="1345.92" cy="918.87" r="1497.07" />
+                            <circle class="bgCls-3" cx="1346.08" cy="919.04" r="1508.44" />
+                            <circle class="bgCls-3" cx="1346.24" cy="919.2" r="1519.81" />
+                            <circle class="bgCls-3" cx="1346.41" cy="919.36" r="1531.18" />
+                            <circle class="bgCls-3" cx="1346.57" cy="919.52" r="1542.55" />
+                            <circle class="bgCls-3" cx="1346.73" cy="919.69" r="1553.92" />
+                            <circle class="bgCls-3" cx="1346.89" cy="919.85" r="1565.29" />
+                            <circle class="bgCls-3" cx="1347.06" cy="920.01" r="1576.66" />
+                            <circle class="bgCls-3" cx="1347.22" cy="920.18" r="1588.03" />
+                            <circle class="bgCls-3" cx="1347.38" cy="920.34" r="1599.4" />
+                            <circle class="bgCls-3" cx="1347.55" cy="920.5" r="1610.77" />
+                            <circle class="bgCls-3" cx="1347.71" cy="920.66" r="1622.14" />
+                            <circle class="bgCls-3" cx="1347.87" cy="920.83" r="1633.5" />
+                            <circle class="bgCls-3" cx="1348.03" cy="920.99" r="1644.87" />
+                            <circle class="bgCls-3" cx="1348.2" cy="921.15" r="1656.24" />
+                            <circle class="bgCls-3" cx="1348.36" cy="921.32" r="1667.61" />
+                            <circle class="bgCls-3" cx="1348.52" cy="921.48" r="1678.98" />
+                            <circle class="bgCls-3" cx="1348.69" cy="921.64" r="1690.35" />
+                            <circle class="bgCls-3" cx="1348.85" cy="921.8" r="1701.72" />
+                            <circle class="bgCls-3" cx="1349.01" cy="921.97" r="1713.09" />
+                            <circle class="bgCls-3" cx="1349.17" cy="922.13" r="1724.46" />
+                        </g>
+                    </g>
+                    <rect class="bgCls-2" x="3" y="3" width="2692.35" height="1842.17" />
+                </g>
+            </svg>
             <rect
                 width="97%"
                 height="96%"
                 fill="none"
                 x="14"
                 y="14"
-                stroke="#117CDC"
-                stroke-width="3"
+            // stroke="#117CDC"
+            // stroke-width="3"
             />
             <svg
                 id="Layer_2"
@@ -366,6 +562,7 @@ function CertificateTemplate4({
                     </g>
                 </g>
             </svg>
+
             <text
                 x="50%"
                 y="42%"
@@ -386,6 +583,8 @@ function CertificateTemplate4({
             <text x="50%" y="58%" text-anchor="middle" font-size="22">
                 on <tspan font-weight="600">{date}</tspan>
             </text>
+
+
             {/* <!-- SADAIN SIGNATURE --> */}
             <svg
                 id="Layer_2"
