@@ -136,12 +136,12 @@ export default function Create({ user }) {
                                 }}
                                 value={certTemp}
                             >
-                                <option value="GDSC">GDSC</option>
-                                <option value="IWD">IWD</option>
+                                <option value="GDSC">Generic Template</option>
+                                {/* <option value="IWD">IWD</option> */}
                                 <option value="Solution Challenge">
                                     Solution Challenge
                                 </option>
-                                <option value="Web Development Bootcamp">
+                                {/* <option value="Web Development Bootcamp">
                                     Web Development Bootcamp
                                 </option>
                             </select>
