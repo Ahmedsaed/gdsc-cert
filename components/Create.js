@@ -4,6 +4,8 @@ import firebase from "firebase/app";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
+import CertificateTemplateTopMember from "./cert/CertificateTemplateTopMember";
+import CertificateTemplateTopInstructor from "./cert/CertificateTemplateTopInstructor";
 import styles from "../styles/Create.module.css";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
 
@@ -143,6 +145,12 @@ export default function Create({ user }) {
                                 </option>
                                 {/* <option value="Web Development Bootcamp">
                                     Web Development Bootcamp
+                                </option> */}
+                                <option value="top_member">
+                                    Top Member Template
+                                </option>
+                                <option value="top_instructor">
+                                    Top Instructor Template
                                 </option>
                             </select>
                         </div>
@@ -177,6 +185,40 @@ export default function Create({ user }) {
                                 handleCreateBtn={handleCreateBtn}
                             />
                         ) : certTemp === "Solution Challenge" ? (
+                            <CertTemp3Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : certTemp === "top_member" ? (
+                            <CertTemp3Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : certTemp === "top_instructor" ? (
                             <CertTemp3Inputs
                                 setTitle={setTitle}
                                 title={title}
@@ -271,6 +313,30 @@ export default function Create({ user }) {
                         />
                     ) : certTemp === "Solution Challenge" ? (
                         <CertificateTemplate3
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                        />
+                    ) : certTemp === "top_member" ? (
+                        <CertificateTemplateTopMember
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                        />
+                    ) : certTemp === "top_instructor" ? (
+                        <CertificateTemplateTopInstructor
                             id={certCode}
                             title={title}
                             line1={line1}

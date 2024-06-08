@@ -46,25 +46,13 @@ function SvgComponent({
                             width={1920}
                             height={1024}
                             preserveAspectRatio="none"
-                            xlinkHref="/certificate-templates/sc_orange_certificate.webp"
-                        />
-                    </g>
-                    <g>
-                        <image
-                            clipPath="url(#prefix__b)"
-                            fill="#000"
-                            x={30}
-                            y={30}
-                            width={2048 * 0.4}
-                            height={455 * 0.4}
-                            preserveAspectRatio="none"
-                            xlinkHref="/certificate-templates/solution_challenge_logo.png"
+                            xlinkHref="/certificate-templates/top_instructor.webp"
                         />
                     </g>
                 </g>
                 <text
                     x="155"
-                    y="280"
+                    y="250"
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="30px"
@@ -74,7 +62,7 @@ function SvgComponent({
                 </text>
                 <text
                     x="150"
-                    y="340"
+                    y="310"
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
                     fontSize="60px"
@@ -84,7 +72,7 @@ function SvgComponent({
                 </text>
                 <text
                     x="155"
-                    y="430"
+                    y="400"
                     fill="orange"
                     fontWeight="500"
                     fontFamily="Roboto"
@@ -94,8 +82,6 @@ function SvgComponent({
                     {name}
                 </text>
                 <text
-                    x="155"
-                    y="500"
                     fill="#5f6368"
                     fontFamily={`'Open Sans'`}
                     fontSize="36px"
@@ -105,7 +91,7 @@ function SvgComponent({
                         <tspan
                             key={index}
                             x="155"
-                            y={500 + index * 40} // Center vertically based on the number of lines
+                            y={470 + index * 40} // Center vertically based on the number of lines
                         >
                             {str}
                         </tspan>
@@ -113,7 +99,7 @@ function SvgComponent({
                 </text>
                 <text
                     x="160"
-                    y={840 - (14 * leadUniversity.split("\n").length) / 2}
+                    y={810 - (14 * leadUniversity.split("\n").length) / 2}
                     fill="#da3936"
                     fontFamily={`'Dancing Script'`}
                     fontSize="80px"
@@ -131,7 +117,7 @@ function SvgComponent({
                         <tspan
                             key={index}
                             x="160"
-                            y={880 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
+                            y={850 + (index - (array.length - 1) / 2) * 14} // Center vertically based on the number of lines
                             dominantBaseline="middle" // Center the text vertically
                             // textAnchor="middle"  // Center the text horizontally
                         >
@@ -140,29 +126,15 @@ function SvgComponent({
                     ))}
                 </text>
                 <text
-                    x="740"
-                    y="845"
+                    x="330"
+                    y="894"
                     fill="#676c72"
                     fontFamily={`'Open Sans'`}
-                    fontSize="28px"
+                    fontSize="22px"
                     className="text__cls"
                 >
                     <tspan fontWeight="800" fontFamily="Roboto">
-                        Date of Issue:
                         {` ${date}`}
-                    </tspan>
-                </text>
-                <text
-                    x="740"
-                    y="875"
-                    fill="#676c72"
-                    fontFamily={`'Open Sans'`}
-                    fontSize="28px"
-                    className="text__cls"
-                >
-                    <tspan fontWeight="800" fontFamily="Roboto">
-                        Certificate ID:
-                        {` ${id}`}
                     </tspan>
                 </text>
                 <text

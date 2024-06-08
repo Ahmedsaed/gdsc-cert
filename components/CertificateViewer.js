@@ -5,6 +5,8 @@ import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
+import CertificateTemplateTopMember from "./cert/CertificateTemplateTopMember";
+import CertificateTemplateTopInstructor from "./cert/CertificateTemplateTopInstructor";
 import Head from "next/head";
 import styles from "../styles/Certificate.module.css";
 import { Canvg } from "canvg";
@@ -49,18 +51,17 @@ export default function Cert({ params }) {
         const width = parseInt(svg.getAttribute("viewBox").split(" ")[2]);
         const height = parseInt(svg.getAttribute("viewBox").split(" ")[3]);
 
-        const canvas = document.createElement('canvas');
-        canvas.width = width
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
         canvas.height = height;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
 
         try {
-
-            const instance = Canvg.fromString(ctx, svgStr)
+            const instance = Canvg.fromString(ctx, svgStr);
             // Renders the SVG into the canvas
             instance.render().then(() => {
-                const imgData = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
+                const imgData = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
                 link.href = imgData;
                 link.download = "certificate.png";
                 document.body.appendChild(link);
@@ -68,7 +69,7 @@ export default function Cert({ params }) {
                 document.body.removeChild(link);
             });
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -85,6 +86,10 @@ export default function Cert({ params }) {
                 <CertificateTemplate3 {...params} />
             ) : params["certTemp"] === "Web Development Bootcamp" ? (
                 <CertificateTemplate4 {...params} />
+            ) : params["certTemp"] === "top_member" ? (
+                <CertificateTemplateTopMember {...params} />
+            ) : params["certTemp"] === "top_instructor" ? (
+                <CertificateTemplateTopInstructor {...params} />
             ) : (
                 <CertificateTemplate1 {...params} />
             )}
