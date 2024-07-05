@@ -6,7 +6,7 @@ import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
 import CertificateTemplateTopMember from "./cert/CertificateTemplateTopMember";
-import CertificateTemplateTopInstructor from "./cert/CertificateTemplateTopInstructor";
+import CertificateTemplateInstructor from "./cert/CertificateTemplateInstructor";
 import Head from "next/head";
 import styles from "../styles/Certificate.module.css";
 import { Canvg } from "canvg";
@@ -88,8 +88,10 @@ export default function Cert({ params }) {
                 <CertificateTemplate4 {...params} />
             ) : params["certTemp"] === "top_member" ? (
                 <CertificateTemplateTopMember {...params} />
-            ) : params["certTemp"] === "top_instructor" ? (
-                <CertificateTemplateTopInstructor {...params} />
+            ) : ["top_member", "generic_2", "top_instructor"].includes(
+                  params["certTemp"]
+              ) ? (
+                <CertificateTemplateInstructor {...params} />
             ) : (
                 <CertificateTemplate1 {...params} />
             )}

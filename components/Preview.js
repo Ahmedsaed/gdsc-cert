@@ -7,6 +7,7 @@ import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
+import CertificateTemplateInstructor from "./cert/CertificateTemplateInstructor";
 
 export default function Preview() {
     const router = useRouter();
@@ -15,14 +16,22 @@ export default function Preview() {
     useEffect(() => {
         if (prefix) {
             async function getCert() {
-                const cert_docs = await firebase
+                let cert_docs = await firebase
                     .firestore()
                     .collection("cert")
                     .doc(prefix)
                     .collection("core21")
                     .get();
 
-                const cert_data = cert_docs.docs.map((doc) => {
+                cert_docs = cert_docs.docs.sort((a, b) => {
+                    const dateA = new Date(a.data().date);
+                    const dateB = new Date(b.data().date);
+
+                    console.log(dateA, dateB, dateA - dateB);
+                    return dateB - dateA;
+                });
+
+                const cert_data = cert_docs.map((doc) => {
                     return {
                         id: doc.id,
                         ...doc.data(),
@@ -136,6 +145,10 @@ export default function Preview() {
                     ) : currentCert["certTemp"] ===
                       "Web Development Bootcamp" ? (
                         <CertificateTemplate4 {...currentCert} />
+                    ) : ["top_member", "generic_2", "top_instructor"].includes(
+                          currentCert["certTemp"]
+                      ) ? (
+                        <CertificateTemplateInstructor {...currentCert} />
                     ) : (
                         <CertificateTemplate1 {...currentCert} />
                     )}

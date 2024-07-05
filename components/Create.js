@@ -4,10 +4,9 @@ import firebase from "firebase/app";
 import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
-import CertificateTemplateTopMember from "./cert/CertificateTemplateTopMember";
-import CertificateTemplateTopInstructor from "./cert/CertificateTemplateTopInstructor";
-import styles from "../styles/Create.module.css";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
+import CertificateTemplateInstructor from "./cert/CertificateTemplateInstructor";
+import styles from "../styles/Create.module.css";
 
 const year = "2023 - 2024";
 
@@ -54,7 +53,7 @@ export default function Create({ user }) {
         })
     );
 
-    const [result, setResult] = useState("");
+    const [result, setResult] = useState([]);
     const [disabled, setDisabled] = useState(false);
 
     function generateRandomCertID(prefix) {
@@ -110,8 +109,15 @@ export default function Create({ user }) {
                 });
             })
                 .then(({ name, id1 }) => {
-                    const finalResult = `${name}\r\nhttps://${window.location.host}/c/${id1}\r\n`;
-                    setResult((r) => r + finalResult);
+                    setResult((r) => {
+                        return [
+                            ...r,
+                            {
+                                name: name,
+                                link: `https://${window.location.host}/c/${id1}`,
+                            },
+                        ];
+                    });
                 })
                 .catch((err) => {
                     console.error(err);
@@ -123,7 +129,7 @@ export default function Create({ user }) {
         <div className={styles["create-menu-wrapper"]}>
             <h2>Create new certificates</h2>
             <div className={styles["create-menu"]}>
-                {!result ? (
+                {!result.length ? (
                     <>
                         {/* Certificate Template Switcher dropdown */}
                         <div className={styles["cert-template-switcher"]}>
@@ -139,19 +145,15 @@ export default function Create({ user }) {
                                 value={certTemp}
                             >
                                 <option value="GDSC">Generic Template</option>
-                                {/* <option value="IWD">IWD</option> */}
+                                <option value="generic_2">
+                                    Generic Template 2
+                                </option>
                                 <option value="Solution Challenge">
                                     Solution Challenge
                                 </option>
                                 {/* <option value="Web Development Bootcamp">
                                     Web Development Bootcamp
                                 </option> */}
-                                <option value="top_member">
-                                    Top Member Template
-                                </option>
-                                <option value="top_instructor">
-                                    Top Instructor Template
-                                </option>
                             </select>
                         </div>
                         {certTemp === "GDSC" ? (
@@ -201,24 +203,7 @@ export default function Create({ user }) {
                                 disabled={disabled}
                                 handleCreateBtn={handleCreateBtn}
                             />
-                        ) : certTemp === "top_member" ? (
-                            <CertTemp3Inputs
-                                setTitle={setTitle}
-                                title={title}
-                                setLine1={setLine1}
-                                line1={line1}
-                                setSignature={setSignature}
-                                signature={signature}
-                                setLeadUniversity={setLeadUniversity}
-                                leadUniversity={leadUniversity}
-                                setDate={setDate}
-                                date={date}
-                                setNames={setNames}
-                                names={names}
-                                disabled={disabled}
-                                handleCreateBtn={handleCreateBtn}
-                            />
-                        ) : certTemp === "top_instructor" ? (
+                        ) : certTemp === "generic_2" ? (
                             <CertTemp3Inputs
                                 setTitle={setTitle}
                                 title={title}
@@ -273,7 +258,14 @@ export default function Create({ user }) {
                         </span>
                         <textarea
                             label="Results"
-                            value={result}
+                            value={result
+                                .sort(
+                                    (a, b) =>
+                                        names.indexOf(a.name) -
+                                        names.indexOf(b.name)
+                                )
+                                .map((r) => `${r.name}\n${r.link}`)
+                                .join("\n")}
                             spellCheck="false"
                             style={{ minHeight: "200px" }}
                         />
@@ -305,12 +297,6 @@ export default function Create({ user }) {
                             date={date}
                             name={names.split(/\r?\n/)[currentCert - 1]}
                         />
-                    ) : certTemp === "IWD" ? (
-                        <CertificateTemplate2
-                            id={certCode}
-                            date={date}
-                            name={names.split(/\r?\n/)[currentCert - 1]}
-                        />
                     ) : certTemp === "Solution Challenge" ? (
                         <CertificateTemplate3
                             id={certCode}
@@ -323,20 +309,8 @@ export default function Create({ user }) {
                             date={date}
                             name={names.split(/\r?\n/)[currentCert - 1]}
                         />
-                    ) : certTemp === "top_member" ? (
-                        <CertificateTemplateTopMember
-                            id={certCode}
-                            title={title}
-                            line1={line1}
-                            line2={line2}
-                            line3={line3}
-                            signature={signature}
-                            leadUniversity={leadUniversity}
-                            date={date}
-                            name={names.split(/\r?\n/)[currentCert - 1]}
-                        />
-                    ) : certTemp === "top_instructor" ? (
-                        <CertificateTemplateTopInstructor
+                    ) : certTemp === "generic_2" ? (
+                        <CertificateTemplateInstructor
                             id={certCode}
                             title={title}
                             line1={line1}

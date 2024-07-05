@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta
                     name="title"
-                    content='Certificate Generator - Google Developers Student Clubs'
+                    content="Certificate Generator - Google Developers Student Clubs"
                     key="title"
                 />
                 <meta
@@ -75,7 +75,11 @@ function MyApp({ Component, pageProps }) {
                     content="Certificate management web app. Create, Verify and Share Certificates."
                     key="og:description"
                 />
-                <meta property="twitter:card" content="summary_large_image" key="twitter:card" />
+                <meta
+                    property="twitter:card"
+                    content="summary_large_image"
+                    key="twitter:card"
+                />
                 <meta
                     property="twitter:url"
                     content="https://gdsc-certificates.web.app/"
@@ -93,9 +97,12 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="theme-color" content="#313131" />
-                <meta name="google-site-verification" content="e9K5dtnY1TbK5tWbc-cwrDoJnStqGowr6afQ5cmD4Wc" />
+                <meta
+                    name="google-site-verification"
+                    content="e9K5dtnY1TbK5tWbc-cwrDoJnStqGowr6afQ5cmD4Wc"
+                />
             </Head>
-            <div className='container'>
+            <div className="container">
                 <Logout />
                 <Component {...pageProps} />
             </div>
