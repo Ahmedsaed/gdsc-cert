@@ -73,6 +73,8 @@ export default function Create({ user }) {
     const [currentCert, setCurrentCert] = useState(1);
 
     function handleCreateBtn() {
+        alert("creating certificates is disabled until a new maintainer is in charge");
+        return 0;
         setDisabled(true);
         const db = firebase.firestore();
         names.split(/\r?\n/).forEach((name) => {
