@@ -5,6 +5,7 @@ import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
+import CertificateTemplate5 from "./cert/CertificateTemplate5";
 import CertificateTemplateInstructor from "./cert/CertificateTemplateInstructor";
 import styles from "../styles/Create.module.css";
 
@@ -151,6 +152,9 @@ export default function Create({ user }) {
                                 <option value="Solution Challenge">
                                     Solution Challenge
                                 </option>
+                                <option value="Certificate of Completion">
+                                    Certificate of Completion
+                                </option>
                                 {/* <option value="Web Development Bootcamp">
                                     Web Development Bootcamp
                                 </option> */}
@@ -188,6 +192,23 @@ export default function Create({ user }) {
                             />
                         ) : certTemp === "Solution Challenge" ? (
                             <CertTemp3Inputs
+                                setTitle={setTitle}
+                                title={title}
+                                setLine1={setLine1}
+                                line1={line1}
+                                setSignature={setSignature}
+                                signature={signature}
+                                setLeadUniversity={setLeadUniversity}
+                                leadUniversity={leadUniversity}
+                                setDate={setDate}
+                                date={date}
+                                setNames={setNames}
+                                names={names}
+                                disabled={disabled}
+                                handleCreateBtn={handleCreateBtn}
+                            />
+                        ) : certTemp === "Certificate of Completion" ? (
+                            <CertTemp5Inputs
                                 setTitle={setTitle}
                                 title={title}
                                 setLine1={setLine1}
@@ -299,6 +320,18 @@ export default function Create({ user }) {
                         />
                     ) : certTemp === "Solution Challenge" ? (
                         <CertificateTemplate3
+                            id={certCode}
+                            title={title}
+                            line1={line1}
+                            line2={line2}
+                            line3={line3}
+                            signature={signature}
+                            leadUniversity={leadUniversity}
+                            date={date}
+                            name={names.split(/\r?\n/)[currentCert - 1]}
+                        />
+                    ) : certTemp === "Certificate of Completion" ? (
+                        <CertificateTemplate5
                             id={certCode}
                             title={title}
                             line1={line1}
@@ -595,6 +628,74 @@ function CertTemp3Inputs({
                     minHeight: "200px",
                 }}
             />
+            <div className={styles["create-menu-btns"]}>
+                <button disabled={disabled} onClick={handleCreateBtn}>
+                    Create
+                </button>
+            </div>
+        </>
+    );
+}
+function CertTemp5Inputs({
+    setTitle,
+    title,
+    setLine1,
+    line1,
+    setSignature,
+    signature,
+    setLeadUniversity,
+    leadUniversity,
+    setDate,
+    date,
+    setNames,
+    names,
+    disabled,
+    handleCreateBtn,
+}) {
+    return (
+        <>
+            <input
+                onChange={(e) => {
+                    setSignature(e.target.value);
+                }}
+                value={signature}
+                placeholder="Signature"
+            />
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                placeholder={
+                    "Member1\r\nMember2\r\nMember3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
+            <textarea
+                onChange={(e) => {
+                    setLeadUniversity(e.target.value);
+                }}
+                value={leadUniversity}
+                placeholder="Lead Name, University"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
+                    setDate(e.target.value);
+                }}
+                value={date}
+                placeholder={new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                })}
+            />
+
             <div className={styles["create-menu-btns"]}>
                 <button disabled={disabled} onClick={handleCreateBtn}>
                     Create
