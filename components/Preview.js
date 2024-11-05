@@ -7,6 +7,7 @@ import CertificateTemplate1 from "./cert/CertificateTemplate1";
 import CertificateTemplate2 from "./cert/CertificateTemplate2";
 import CertificateTemplate3 from "./cert/CertificateTemplate3";
 import CertificateTemplate4 from "./cert/CertificateTemplate4";
+import CertificateTemplate5 from "./cert/CertificateTemplate5";
 import CertificateTemplateInstructor from "./cert/CertificateTemplateInstructor";
 
 export default function Preview() {
@@ -145,6 +146,8 @@ export default function Preview() {
                     ) : currentCert["certTemp"] ===
                       "Web Development Bootcamp" ? (
                         <CertificateTemplate4 {...currentCert} />
+                    ) : currentCert["certTemp"] === "Certificate of Completion" ? (
+                        <CertificateTemplate5 {...currentCert} />
                     ) : ["top_member", "generic_2", "top_instructor"].includes(
                           currentCert["certTemp"]
                       ) ? (
