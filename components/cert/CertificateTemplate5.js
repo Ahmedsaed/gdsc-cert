@@ -51,6 +51,16 @@ function SvgComponent({
                     </g>
                 </g>
                 <text
+                    x="190"
+                    y="220"
+                    fill="#676c72"
+                    fontFamily={`'Open Sans'`}
+                    fontSize="28px"
+                    className="text__cls"
+                >
+                    {title || "2020 - 2021 GDSC Core Team Member"}
+                </text>
+                <text
                     x="185"
                     y="430"
                     fill="orange"
@@ -60,6 +70,24 @@ function SvgComponent({
                     className="text__cls"
                 >
                     {name || "Waleed Muhammad"}
+                </text>
+                <text
+                    x="185"
+                    y="500"
+                    fill="#5f6368"
+                    fontFamily={`'Open Sans'`}
+                    fontSize="36px"
+                    className="text__cls"
+                >
+                    {line1.split("\n").map((str, index, array) => (
+                        <tspan
+                            key={index}
+                            x="185"
+                            y={500 + index * 40} // Center vertically based on the number of lines
+                        >
+                            {str}
+                        </tspan>
+                    ))}
                 </text>
                 <text
                     x="185"

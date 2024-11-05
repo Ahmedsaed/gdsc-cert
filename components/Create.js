@@ -656,24 +656,29 @@ function CertTemp5Inputs({
         <>
             <input
                 onChange={(e) => {
+                    setTitle(e.target.value);
+                }}
+                value={title}
+                placeholder={`Title`}
+            />
+            <textarea
+                onChange={(e) => {
+                    setLine1(e.target.value);
+                }}
+                value={line1}
+                placeholder="Line 1"
+                style={{
+                    minHeight: "100px",
+                }}
+            />
+            <input
+                onChange={(e) => {
                     setSignature(e.target.value);
                 }}
                 value={signature}
                 placeholder="Signature"
             />
-            <textarea
-                onChange={(e) => {
-                    setNames(e.target.value);
-                }}
-                value={names}
-                spellCheck="false"
-                placeholder={
-                    "Member1\r\nMember2\r\nMember3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
-                }
-                style={{
-                    minHeight: "200px",
-                }}
-            />
+
             <textarea
                 onChange={(e) => {
                     setLeadUniversity(e.target.value);
@@ -695,7 +700,19 @@ function CertTemp5Inputs({
                     day: "numeric",
                 })}
             />
-
+            <textarea
+                onChange={(e) => {
+                    setNames(e.target.value);
+                }}
+                value={names}
+                spellCheck="false"
+                placeholder={
+                    "Member1\r\nMember2\r\nMember3\r\n\r\nYou can create multiple certificates at once by entering the names of the members and clicking on the 'Create' button"
+                }
+                style={{
+                    minHeight: "200px",
+                }}
+            />
             <div className={styles["create-menu-btns"]}>
                 <button disabled={disabled} onClick={handleCreateBtn}>
                     Create
