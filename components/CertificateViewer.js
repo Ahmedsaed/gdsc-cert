@@ -86,7 +86,7 @@ export default function Cert({ params }) {
                 <CertificateTemplate3 {...params} />
             ) : params["certTemp"] === "Web Development Bootcamp" ? (
                 <CertificateTemplate4 {...params} />
-            ) : params["certTemp"] === "Web Development Bootcamp" ? (
+            ) : params["certTemp"] === "Certificate of Completion" ? (
                 <CertificateTemplate5 {...params} />
             ) : ["top_member", "generic_2", "top_instructor"].includes(
                   params["certTemp"]
