@@ -46,7 +46,7 @@ function SvgComponent({
                             width={1920}
                             height={1024}
                             preserveAspectRatio="none"
-                            xlinkHref="/certificate-templates/CT-certificates.png"
+                            xlinkHref="/certificate-templates/certificate-of-completion.webp"
                         />
                     </g>
                 </g>
@@ -99,7 +99,7 @@ function SvgComponent({
                 >
                     Certificate of Completion
                 </text>
-                
+
                 <text
                     x="200"
                     y={770 - (14 * leadUniversity.split("\n").length) / 2}
